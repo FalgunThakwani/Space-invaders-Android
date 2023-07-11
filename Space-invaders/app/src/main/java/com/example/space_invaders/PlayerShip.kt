@@ -1,4 +1,4 @@
-package com.gamecodeschool.kotlininvaders
+package com.example.space_invaders
 
 import android.content.Context
 import android.graphics.Bitmap

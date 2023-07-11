@@ -1,4 +1,4 @@
-package com.gamecodeschool.kotlininvaders
+package com.example.space_invaders
 
 import android.graphics.RectF
 
@@ -7,7 +7,8 @@ class DefenceBrick(row: Int, column: Int, shelterNumber: Int, screenX: Int, scre
 
     var isVisible = true
 
-    private val width = screenX / 180
+//    private val width = screenX / 180
+    private val width = screenX / 45
     private val height = screenY / 80
 
     // Sometimes a bullet slips through this padding.

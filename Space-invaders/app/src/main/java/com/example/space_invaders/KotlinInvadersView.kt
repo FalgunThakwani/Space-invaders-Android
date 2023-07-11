@@ -1,4 +1,4 @@
-package com.gamecodeschool.kotlininvaders
+package com.example.space_invaders
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -81,13 +81,25 @@ class KotlinInvadersView(context: Context,
         // Build an army of invaders
         Invader.numberOfInvaders = 0
         numInvaders = 0
-        for (column in 0..10) {
-            for (row in 0..5) {
+//        for (column in 0..10) {
+//            for (row in 0..5) {
+//                invaders.add(Invader(context,
+//                        row,
+//                        column,
+//                        size.x,
+//                        size.y))
+//
+//                numInvaders++
+//            }
+//        }
+
+        for (column in 0..7) {
+            for (row in 0..3) {
                 invaders.add(Invader(context,
-                        row,
-                        column,
-                        size.x,
-                        size.y))
+                    row,
+                    column,
+                    size.x,
+                    size.y))
 
                 numInvaders++
             }
@@ -95,14 +107,28 @@ class KotlinInvadersView(context: Context,
 
         // Build the shelters
         numBricks = 0
+//        for (shelterNumber in 0..4) {
+//            for (column in 0..18) {
+//                for (row in 0..8) {
+//                    bricks.add(DefenceBrick(row,
+//                            column,
+//                            shelterNumber,
+//                            size.x,
+//                            size.y))
+//
+//                    numBricks++
+//                }
+//            }
+//        }
+
         for (shelterNumber in 0..4) {
-            for (column in 0..18) {
-                for (row in 0..8) {
+            for (column in 0..5) {
+                for (row in 0..4) {
                     bricks.add(DefenceBrick(row,
-                            column,
-                            shelterNumber,
-                            size.x,
-                            size.y))
+                        column,
+                        shelterNumber,
+                        size.x,
+                        size.y))
 
                     numBricks++
                 }

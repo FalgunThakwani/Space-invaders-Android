@@ -1,4 +1,4 @@
-package com.gamecodeschool.kotlininvaders
+package com.example.space_invaders
 
 import android.app.Activity
 import android.graphics.Point

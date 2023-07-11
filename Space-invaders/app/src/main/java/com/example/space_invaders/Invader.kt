@@ -1,4 +1,4 @@
-package com.gamecodeschool.kotlininvaders
+package com.example.space_invaders
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -10,11 +10,13 @@ class Invader(context: Context, row: Int, column: Int, screenX: Int, screenY: In
     // How wide, high and spaced out are the invader will be
     var width = screenX / 35f
     private var height = screenY / 35f
-    private val padding = screenX / 45
+//    private val padding = screenX / 45
+    private val padding = screenX / 25
 
     var position = RectF(
             column * (width + padding),
-            100 + row * (width + padding / 4),
+//        100 + row * (width + padding / 4),
+        100 + row * (width + padding),
             column * (width + padding) + width,
             100 + row * (width + padding / 4) + height
     )
@@ -91,7 +93,7 @@ class Invader(context: Context, row: Int, column: Int, screenX: Int, screenY: In
         position.bottom += height
 
         // The later the wave, the more the invader speeds up
-        speed *=  (1.1f + (waveNumber.toFloat() / 20))
+//        speed *=  (1.1f + (waveNumber.toFloat() / 20))
     }
 
     fun takeAim(playerShipX: Float,
