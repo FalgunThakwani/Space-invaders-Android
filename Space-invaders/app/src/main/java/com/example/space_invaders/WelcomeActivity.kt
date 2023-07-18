@@ -1,5 +1,6 @@
 package com.example.space_invaders
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -38,7 +39,16 @@ class WelcomeActivity : AppCompatActivity() {
      * Navigates to the main activity.
      */
     private fun navigateToInvaderActivity() {
-        val intent = Intent(this, KotlinInvadersActivity::class.java)
+        val playerName = getSharedPreferences(RegisterActivity.PREFS_FILENAME, Context.MODE_PRIVATE)
+            .getString(RegisterActivity.PLAYER_NAME_KEY, "XYZ")
+
+        val intent: Intent
+        if(playerName == null){
+            intent = Intent(this, RegisterActivity::class.java)
+        }else{
+            intent = Intent(this, HomeActivity::class.java)
+        }
+
         startActivity(intent) // Start the main activity
         finish() // Finish the login activity to prevent navigating back to it
     }

@@ -24,6 +24,12 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".RegisterActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".HomeActivity"
+            android:exported="true"/>
+        <activity
             android:name=".KotlinInvadersActivity"
             android:exported="false"
             android:screenOrientation="portrait"
