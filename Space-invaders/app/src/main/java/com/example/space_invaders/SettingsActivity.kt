@@ -1,6 +1,5 @@
 package com.example.space_invaders
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.widget.Switch
@@ -12,18 +11,27 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        val switchHaptic = findViewById<Switch>(R.id.switch_haptic)
+        val switchHapticInvader = findViewById<Switch>(R.id.switch_haptic_invader)
+        val switchHapticPlayer = findViewById<Switch>(R.id.switch_haptic_player)
 
         // get shared preferences
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
         // set the switch state based on the value stored in shared preferences
-        switchHaptic.isChecked = sharedPreferences.getBoolean("HAPTIC_FEEDBACK_ENABLED", true)
+        switchHapticInvader.isChecked = sharedPreferences.getBoolean("HAPTIC_FEEDBACK_INVADER", true)
+        switchHapticPlayer.isChecked = sharedPreferences.getBoolean("HAPTIC_FEEDBACK_PLAYER", true)
 
-        // set the listener for the switch
-        switchHaptic.setOnCheckedChangeListener { _, isChecked ->
+        // set the listener for the switches
+        switchHapticInvader.setOnCheckedChangeListener { _, isChecked ->
             with(sharedPreferences.edit()) {
-                putBoolean("HAPTIC_FEEDBACK_ENABLED", isChecked)
+                putBoolean("HAPTIC_FEEDBACK_INVADER", isChecked)
+                apply()
+            }
+        }
+
+        switchHapticPlayer.setOnCheckedChangeListener { _, isChecked ->
+            with(sharedPreferences.edit()) {
+                putBoolean("HAPTIC_FEEDBACK_PLAYER", isChecked)
                 apply()
             }
         }

@@ -295,7 +295,7 @@ class KotlinInvadersView(context: Context,
                         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
                         // check if haptic feedback is enabled
-                        if (sharedPreferences.getBoolean("HAPTIC_FEEDBACK_ENABLED", true)) {
+                        if (sharedPreferences.getBoolean("HAPTIC_FEEDBACK_INVADER", true)) {
                             // vibrate the device
                             val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -375,7 +375,7 @@ class KotlinInvadersView(context: Context,
                     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
                     // check if haptic feedback is enabled
-                    if (sharedPreferences.getBoolean("HAPTIC_FEEDBACK_ENABLED", true)) {
+                    if (sharedPreferences.getBoolean("HAPTIC_FEEDBACK_PLAYER", true)) {
                         // vibrate the device
                         val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

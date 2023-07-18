@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -19,22 +18,43 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/vibration_label"
-        android:layout_width="wrap_content"
+        android:id="@+id/vibration_label_invader"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="In-game vibrations"
+        android:layout_marginTop="24dp"
+        android:text="Invader Bullet Hits Player"
         android:textSize="18sp"
-        android:paddingTop="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/switch_haptic"
+        app:layout_constraintEnd_toStartOf="@+id/switch_haptic_invader"
+        app:layout_constraintHorizontal_bias="0.36"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <Switch
-        android:id="@+id/switch_haptic"
+        android:id="@+id/switch_haptic_invader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/vibration_label"
+        app:layout_constraintBottom_toBottomOf="@+id/vibration_label_invader"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/vibration_label" />
+        app:layout_constraintTop_toTopOf="@+id/vibration_label_invader" />
+
+    <TextView
+        android:id="@+id/vibration_label_player"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Player Bullet Hits Invader"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/switch_haptic_player"
+        app:layout_constraintHorizontal_bias="0.406"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vibration_label_invader" />
+
+    <Switch
+        android:id="@+id/switch_haptic_player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/vibration_label_player"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/vibration_label_player" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
