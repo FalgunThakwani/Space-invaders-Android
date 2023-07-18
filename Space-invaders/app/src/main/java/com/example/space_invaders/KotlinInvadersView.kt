@@ -6,6 +6,7 @@ import android.graphics.*
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.preference.PreferenceManager
 import android.view.SurfaceView
 import android.util.Log
 import android.view.MotionEvent
@@ -76,8 +77,8 @@ class KotlinInvadersView(context: Context,
     // When did we last play a menacing sound
     private var lastMenaceTime = System.currentTimeMillis()
 
-
-
+    // Get the preference for haptic feedback from user
+    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
     private fun prepareLevel() {
         // Here we will initialize the game objects
@@ -290,13 +291,19 @@ class KotlinInvadersView(context: Context,
                     if (RectF.intersects(playerBullet.position, invader.position)) {
                         invader.isVisible = false
 
-                        // Vibrate the device
-                        val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                            vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE))
-                        } else {
-                            //deprecated in API 26
-                            vibrator.vibrate(500)
+                        // get shared preferences
+                        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+
+                        // check if haptic feedback is enabled
+                        if (sharedPreferences.getBoolean("HAPTIC_FEEDBACK_ENABLED", true)) {
+                            // vibrate the device
+                            val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE))
+                            } else {
+                                //deprecated in API 26
+                                vibrator.vibrate(500)
+                            }
                         }
 
                         soundPlayer.playSound(SoundPlayer.invaderExplodeID)
@@ -308,7 +315,6 @@ class KotlinInvadersView(context: Context,
                         }
 
                         // Has the player cleared the level
-                        //if (score == numInvaders * 10 * waves) {
                         if (Invader.numberOfInvaders == 0) {
                             paused = true
                             lives ++
@@ -365,13 +371,19 @@ class KotlinInvadersView(context: Context,
                     bullet.isActive = false
                     lives --
 
-                    // Vibrate the device
-                    val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE))
-                    } else {
-                        //deprecated in API 26
-                        vibrator.vibrate(500)
+                    // get shared preferences
+                    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+
+                    // check if haptic feedback is enabled
+                    if (sharedPreferences.getBoolean("HAPTIC_FEEDBACK_ENABLED", true)) {
+                        // vibrate the device
+                        val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE))
+                        } else {
+                            //deprecated in API 26
+                            vibrator.vibrate(500)
+                        }
                     }
 
                     soundPlayer.playSound(SoundPlayer.playerExplodeID)
