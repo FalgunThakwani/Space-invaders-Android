@@ -38,7 +38,7 @@ class WelcomeActivity : AppCompatActivity() {
      * Navigates to the main activity.
      */
     private fun navigateToInvaderActivity() {
-        val intent = Intent(this, KotlinInvadersActivity::class.java)
+        val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent) // Start the main activity
         finish() // Finish the login activity to prevent navigating back to it
     }
