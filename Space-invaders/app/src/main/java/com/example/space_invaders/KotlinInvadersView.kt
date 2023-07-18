@@ -93,7 +93,7 @@ class KotlinInvadersView(context: Context,
 //            }
 //        }
 
-        for (column in 0..7) {
+        for (column in 0..6) {
             for (row in 0..3) {
                 invaders.add(Invader(context,
                     row,
