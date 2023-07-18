@@ -3,6 +3,9 @@ package com.example.space_invaders
 import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.*
+import android.os.Build
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.view.SurfaceView
 import android.util.Log
 import android.view.MotionEvent
@@ -287,6 +290,15 @@ class KotlinInvadersView(context: Context,
                     if (RectF.intersects(playerBullet.position, invader.position)) {
                         invader.isVisible = false
 
+                        // Vibrate the device
+                        val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE))
+                        } else {
+                            //deprecated in API 26
+                            vibrator.vibrate(500)
+                        }
+
                         soundPlayer.playSound(SoundPlayer.invaderExplodeID)
                         playerBullet.isActive = false
                         Invader.numberOfInvaders --
@@ -352,6 +364,16 @@ class KotlinInvadersView(context: Context,
                 if (RectF.intersects(playerShip.position, bullet.position)) {
                     bullet.isActive = false
                     lives --
+
+                    // Vibrate the device
+                    val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE))
+                    } else {
+                        //deprecated in API 26
+                        vibrator.vibrate(500)
+                    }
+
                     soundPlayer.playSound(SoundPlayer.playerExplodeID)
 
                     // Is it game over?
