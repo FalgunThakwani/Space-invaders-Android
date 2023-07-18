@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import androidx.appcompat.app.AppCompatDelegate
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -21,6 +22,7 @@ class RegisterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         setContentView(R.layout.activity_register)
 
         // Initialize views
