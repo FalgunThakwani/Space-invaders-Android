@@ -11,6 +11,9 @@ import androidx.appcompat.app.AppCompatDelegate
 
 class RegisterActivity : AppCompatActivity() {
 
+    /**
+     * Companion object to store constants.
+     */
     companion object {
         const val PREFS_FILENAME = "com.example.space_invaders.prefs"
         const val PLAYER_NAME_KEY = "player_name_key"
@@ -23,6 +26,7 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         getSupportActionBar()?.hide()
         super.onCreate(savedInstanceState)
+        // Force Night Mode
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         setContentView(R.layout.activity_register)
 
@@ -45,6 +49,10 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Saves the player's name to SharedPreferences.
+     * @param name The player's name.
+     */
     private fun savePlayerName(name: String) {
         // Get an instance of the SharedPreferences.Editor
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
