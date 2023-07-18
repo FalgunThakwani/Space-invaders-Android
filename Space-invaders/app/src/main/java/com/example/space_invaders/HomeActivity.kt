@@ -6,10 +6,15 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatDelegate
+import com.example.space_invaders.RegisterActivity.Companion.PREFS_FILENAME
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        getSupportActionBar()?.hide()
         super.onCreate(savedInstanceState)
+        // Force Night Mode
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         setContentView(R.layout.activity_home)
 
         val textViewHomeWelcome = findViewById<TextView>(R.id.textView_homeWelcome)
@@ -18,11 +23,11 @@ class HomeActivity : AppCompatActivity() {
         val settingsButton = findViewById<Button>(R.id.button_settings)
 
         // Retrieve the player's name
-        val sharedPref = getSharedPreferences("PlayerInfo", Context.MODE_PRIVATE)
-        val playerName = sharedPref.getString("playerName", "Captain ")
+        val playerName = getSharedPreferences(PREFS_FILENAME, Context.MODE_PRIVATE)
+            .getString(RegisterActivity.PLAYER_NAME_KEY, "XYZ")
 
         // Update the TextView
-        textViewHomeWelcome.text = "Welcome, $playerName"
+        textViewHomeWelcome.text = "Welcome, Captain $playerName"
 
         // Navigate to KotlinInvadersActivity when the "START" button is clicked
         startButton.setOnClickListener {

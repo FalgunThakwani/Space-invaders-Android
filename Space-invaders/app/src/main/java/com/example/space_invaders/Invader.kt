@@ -8,7 +8,9 @@ import android.graphics.BitmapFactory
 
 class Invader(context: Context, row: Int, column: Int, screenX: Int, screenY: Int) {
     // How wide, high and spaced out are the invader will be
-    var width = screenX / 35f
+//    var width = screenX / 35f
+    var width = screenX / 17f
+
     private var height = screenY / 35f
 //    private val padding = screenX / 45
     private val padding = screenX / 25
