@@ -1,16 +1,18 @@
+package com.example.space_invaders
+
 import android.content.Context
-import android.content.SharedPreferences
 import android.content.res.AssetFileDescriptor
 import android.media.AudioManager
 import android.media.SoundPool
-import android.preference.PreferenceManager
 import android.util.Log
 import java.io.IOException
 
 class SoundPlayer(context: Context) {
 
     // For sound FX
-    private val soundPool: SoundPool = SoundPool(10, AudioManager.STREAM_MUSIC, 0)
+    private val soundPool: SoundPool = SoundPool(10,
+        AudioManager.STREAM_MUSIC,
+        0)
 
     companion object {
         var playerExplodeID = -1
@@ -23,9 +25,12 @@ class SoundPlayer(context: Context) {
 
     init {
         try {
+            // Create objects of the 2 required classes
             val assetManager = context.assets
             var descriptor: AssetFileDescriptor
 
+
+            // Load our fx in memory ready for use
             descriptor = assetManager.openFd("shoot.ogg")
             shootID = soundPool.load(descriptor, 0)
 
@@ -47,17 +52,14 @@ class SoundPlayer(context: Context) {
             descriptor = assetManager.openFd("oh.ogg")
             ohID = soundPool.load(descriptor, 0)
 
+
         } catch (e: IOException) {
+            // Print an error message to the console
             Log.e("error", "failed to load sound files")
         }
     }
 
-    fun playSound(id: Int, context: Context) {
-        val sharedPreferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-        val soundEnabled = sharedPreferences.getBoolean("SOUND_ENABLED", true)
-
-        if (soundEnabled) {
-            soundPool.play(id, 1f, 1f, 0, 0, 1f)
-        }
+    fun playSound(id: Int){
+        soundPool.play(id, 1f, 1f, 0, 0, 1f)
     }
 }

@@ -77,8 +77,12 @@ class KotlinInvadersView(context: Context,
     // When did we last play a menacing sound
     private var lastMenaceTime = System.currentTimeMillis()
 
+
     // Get the preference for haptic feedback from user
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+
+    // Get user's preference for sound
+    val soundEnabled = sharedPreferences.getBoolean("SOUND_INGAME", true)
 
     private fun prepareLevel() {
         // Here we will initialize the game objects
@@ -175,13 +179,14 @@ class KotlinInvadersView(context: Context,
     }
 
     private fun menacePlayer() {
-        if (uhOrOh) {
-            // Play Uh
-            soundPlayer.playSound(SoundPlayer.uhID)
-
-        } else {
-            // Play Oh
-            soundPlayer.playSound(SoundPlayer.ohID)
+        if (soundEnabled) {
+            if (uhOrOh) {
+                // Play Uh
+                soundPlayer.playSound(SoundPlayer.uhID)
+            } else {
+                // Play Oh
+                soundPlayer.playSound(SoundPlayer.ohID)
+            }
         }
 
         // Reset the last menace time
@@ -291,38 +296,42 @@ class KotlinInvadersView(context: Context,
                     if (RectF.intersects(playerBullet.position, invader.position)) {
                         invader.isVisible = false
 
-                        // get shared preferences
+                        // Get shared preferences
                         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
-                        // check if haptic feedback is enabled
+                        // Check if haptic feedback is enabled
                         if (sharedPreferences.getBoolean("HAPTIC_FEEDBACK_INVADER", true)) {
-                            // vibrate the device
+                            // Vibrate the device
                             val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                                 vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE))
                             } else {
-                                //deprecated in API 26
+                                // Deprecated in API 26
                                 vibrator.vibrate(500)
                             }
                         }
 
-                        soundPlayer.playSound(SoundPlayer.invaderExplodeID)
+                        // Play sound if enabled
+                        if (soundEnabled) {
+                            soundPlayer.playSound(SoundPlayer.invaderExplodeID)
+                        }
+
                         playerBullet.isActive = false
-                        Invader.numberOfInvaders --
+                        Invader.numberOfInvaders--
                         score += 10
-                        if(score > highScore){
+                        if (score > highScore) {
                             highScore = score
                         }
 
                         // Has the player cleared the level
                         if (Invader.numberOfInvaders == 0) {
                             paused = true
-                            lives ++
+                            lives++
                             invaders.clear()
                             bricks.clear()
                             invadersBullets.clear()
                             prepareLevel()
-                            waves ++
+                            waves++
                             break
                         }
 
@@ -342,12 +351,19 @@ class KotlinInvadersView(context: Context,
                             // A collision has occurred
                             bullet.isActive = false
                             brick.isVisible = false
-                            soundPlayer.playSound(SoundPlayer.damageShelterID)
+
+                            // Get shared preferences
+                            val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+
+                            // Play sound if enabled
+                            val soundEnabled = sharedPreferences.getBoolean("SOUND_ENABLED", true)
+                            if (soundEnabled) {
+                                soundPlayer.playSound(SoundPlayer.damageShelterID)
+                            }
                         }
                     }
                 }
             }
-
         }
 
         // Has a player playerBullet hit a shelter brick
@@ -358,7 +374,15 @@ class KotlinInvadersView(context: Context,
                         // A collision has occurred
                         playerBullet.isActive = false
                         brick.isVisible = false
-                        soundPlayer.playSound(SoundPlayer.damageShelterID)
+
+                        // Get shared preferences
+                        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+
+                        // Play sound if enabled
+                        val soundEnabled = sharedPreferences.getBoolean("SOUND_ENABLED", true)
+                        if (soundEnabled) {
+                            soundPlayer.playSound(SoundPlayer.damageShelterID)
+                        }
                     }
                 }
             }
@@ -386,7 +410,9 @@ class KotlinInvadersView(context: Context,
                         }
                     }
 
-                    soundPlayer.playSound(SoundPlayer.playerExplodeID)
+                    if (soundEnabled) {
+                        soundPlayer.playSound(SoundPlayer.damageShelterID)
+                    }
 
                     // Is it game over?
                     if (lives == 0) {
@@ -538,7 +564,9 @@ class KotlinInvadersView(context: Context,
                                     playerShip.position.top,
                                     playerBullet.up)) {
 
-                        soundPlayer.playSound(SoundPlayer.shootID)
+                        if (soundEnabled) {
+                            soundPlayer.playSound(SoundPlayer.damageShelterID)
+                        }
                     }
                 }
             }
