@@ -35,16 +35,10 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        /*// Navigate to DockyardActivity when the "DOCKYARD" button is clicked
-        dockyardButton.setOnClickListener {
-            val intent = Intent(this, DockyardActivity::class.java)
-            startActivity(intent)
-        }
-
         // Navigate to SettingsActivity when the "SETTINGS" button is clicked
         settingsButton.setOnClickListener {
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
-        }*/
+        }
     }
 }

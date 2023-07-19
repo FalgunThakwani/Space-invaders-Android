@@ -11,8 +11,8 @@ class SoundPlayer(context: Context) {
 
     // For sound FX
     private val soundPool: SoundPool = SoundPool(10,
-            AudioManager.STREAM_MUSIC,
-            0)
+        AudioManager.STREAM_MUSIC,
+        0)
 
     companion object {
         var playerExplodeID = -1
