@@ -48,7 +48,8 @@ class KotlinInvadersView(context: Context,
     // The player's playerBullet
     // much faster and half the length
     // compared to invader's bullet
-    private var playerBullet = Bullet(size.y, 1200f, 40f)
+//    private var playerBullet = Bullet(size.y, 1200f, 40f)
+    private var playerBullet = Bullet(size.y, 2400f, 40f)
 
     // The invaders bullets
     private val invadersBullets = ArrayList<Bullet>()
@@ -633,7 +634,6 @@ class KotlinInvadersView(context: Context,
             }
 
         }
-
         return true
     }
 
