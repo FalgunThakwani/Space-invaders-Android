@@ -22,15 +22,20 @@ class PlayerShip(context: Context,
         val selectedImageResId = sharedPreferences.getInt("selectedImageResId", -1)
 
         // If there is a selected image resource ID, update the bitmap
-        bitmap = if (selectedImageResId != null || selectedImageResId != -1) {
-            BitmapFactory.decodeResource(
-                context.resources,
-                selectedImageResId)
-        }else{
+//        bitmap = if (selectedImageResId != null || selectedImageResId != -1) {
+//            BitmapFactory.decodeResource(
+//                context.resources,
+//                selectedImageResId)
+//        }else{
+//            BitmapFactory.decodeResource(
+//                context.resources,
+//                R.drawable.playership)
+//        }
+
+        bitmap =
             BitmapFactory.decodeResource(
                 context.resources,
                 R.drawable.playership)
-        }
 
     }
 

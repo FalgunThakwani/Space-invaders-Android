@@ -24,6 +24,9 @@ class DockYard : AppCompatActivity() {
     private var currentIndex = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        getSupportActionBar()?.hide()
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dock_yard)
 

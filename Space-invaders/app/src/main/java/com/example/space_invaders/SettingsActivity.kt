@@ -16,6 +16,8 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
+        getSupportActionBar()?.hide()
+
         val switchHapticInvader = findViewById<Switch>(R.id.switch_haptic_invader)
         val switchHapticPlayer = findViewById<Switch>(R.id.switch_haptic_player)
         val switchSoundInGame = findViewById<Switch>(R.id.switch_sound_ingame)

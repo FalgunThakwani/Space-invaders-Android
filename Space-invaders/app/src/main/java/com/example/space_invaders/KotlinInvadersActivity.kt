@@ -22,6 +22,8 @@ class KotlinInvadersActivity : Activity() {
         display.getSize(size)
 
         // Initialize gameView and set it as the view
+//        setContentView(R.layout.activity_background)
+
         kotlinInvadersView = KotlinInvadersView(this, size)
         setContentView(kotlinInvadersView)
 
