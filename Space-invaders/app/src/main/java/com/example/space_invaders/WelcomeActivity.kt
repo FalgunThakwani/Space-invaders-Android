@@ -1,5 +1,6 @@
 package com.example.space_invaders
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.space_invaders.RegisterActivity.Companion.PREFS_FILENAME
 
 class WelcomeActivity : AppCompatActivity() {
     private val SPLASH_DELAY: Long = 2000
@@ -38,7 +40,16 @@ class WelcomeActivity : AppCompatActivity() {
      * Navigates to the main activity.
      */
     private fun navigateToInvaderActivity() {
-        val intent = Intent(this, RegisterActivity::class.java)
+
+        val intent: Intent
+        // Check if the player's name is saved in SharedPreferences
+        if(getSharedPreferences(PREFS_FILENAME, Context.MODE_PRIVATE)
+            .contains(RegisterActivity.PLAYER_NAME_KEY)){
+            intent = Intent(this, HomeActivity::class.java)
+        }else{
+            intent = Intent(this, RegisterActivity::class.java)
+        }
+
         startActivity(intent) // Start the main activity
         finish() // Finish the login activity to prevent navigating back to it
     }
