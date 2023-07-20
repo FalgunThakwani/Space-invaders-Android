@@ -1,6 +1,7 @@
 package com.example.space_invaders
 
 import android.app.Activity
+import android.content.Intent
 import android.graphics.Point
 import android.os.Bundle
 
@@ -23,6 +24,8 @@ class KotlinInvadersActivity : Activity() {
         // Initialize gameView and set it as the view
         kotlinInvadersView = KotlinInvadersView(this, size)
         setContentView(kotlinInvadersView)
+//        val intent = Intent(this, DockYard::class.java)
+//        startActivity(intent)
     }
 
     // This method executes when the player starts the game
