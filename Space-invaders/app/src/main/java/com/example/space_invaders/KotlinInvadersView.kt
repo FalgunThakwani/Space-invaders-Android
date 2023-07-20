@@ -79,7 +79,7 @@ class KotlinInvadersView(context: Context,
 
 
     // Get the preference for haptic feedback from user
-    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+    val sharedPreferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
     // Get user's preference for sound
     val soundEnabled = sharedPreferences.getBoolean("SOUND_INGAME", true)
@@ -409,7 +409,7 @@ class KotlinInvadersView(context: Context,
                             vibrator.vibrate(500)
                         }
                     }
-
+                    val soundEnabled = sharedPreferences.getBoolean("SOUND_ENABLED", true)
                     if (soundEnabled) {
                         soundPlayer.playSound(SoundPlayer.damageShelterID)
                     }
