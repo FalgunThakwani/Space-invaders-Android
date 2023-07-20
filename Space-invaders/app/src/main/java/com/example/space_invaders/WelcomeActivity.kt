@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.space_invaders.RegisterActivity.Companion.PREFS_FILENAME
 
 class WelcomeActivity : AppCompatActivity() {
     private val SPLASH_DELAY: Long = 2000
@@ -43,7 +42,7 @@ class WelcomeActivity : AppCompatActivity() {
 
         val intent: Intent
         // Check if the player's name is saved in SharedPreferences
-        if(getSharedPreferences(PREFS_FILENAME, Context.MODE_PRIVATE)
+        if(getSharedPreferences(RegisterActivity.PREFS_FILENAME, Context.MODE_PRIVATE)
             .contains(RegisterActivity.PLAYER_NAME_KEY)){
             intent = Intent(this, HomeActivity::class.java)
         }else{
