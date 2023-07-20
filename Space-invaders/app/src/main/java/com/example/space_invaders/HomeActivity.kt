@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
-import com.example.space_invaders.RegisterActivity.Companion.PREFS_FILENAME
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +22,7 @@ class HomeActivity : AppCompatActivity() {
         val settingsButton = findViewById<Button>(R.id.button_settings)
 
         // Retrieve the player's name
-        val playerName = getSharedPreferences(PREFS_FILENAME, Context.MODE_PRIVATE)
+        val playerName = getSharedPreferences(RegisterActivity.PREFS_FILENAME, Context.MODE_PRIVATE)
             .getString(RegisterActivity.PLAYER_NAME_KEY, "XYZ")
 
         // Update the TextView
@@ -33,6 +32,11 @@ class HomeActivity : AppCompatActivity() {
         startButton.setOnClickListener {
             val intent = Intent(this, KotlinInvadersActivity::class.java)
             startActivity(intent)
+        }
+
+        dockyardButton.setOnClickListener {
+                    val intent = Intent(this, DockYard::class.java)
+        startActivity(intent)
         }
 
         // Navigate to SettingsActivity when the "SETTINGS" button is clicked

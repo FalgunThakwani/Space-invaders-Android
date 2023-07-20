@@ -1,6 +1,7 @@
 package com.example.space_invaders
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.RectF
 import android.graphics.BitmapFactory
@@ -10,9 +11,29 @@ class PlayerShip(context: Context,
                  screenY: Int) {
 
     // The player ship will be represented by a Bitmap
-    var bitmap: Bitmap = BitmapFactory.decodeResource(
-            context.resources,
-            R.drawable.playership)
+//    var bitmap: Bitmap = BitmapFactory.decodeResource(
+//            context.resources,
+//            R.drawable.playership)
+///Update Code
+    var bitmap: Bitmap
+    init{
+
+        val sharedPreferences: SharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val selectedImageResId = sharedPreferences.getInt("selectedImageResId", -1)
+
+        // If there is a selected image resource ID, update the bitmap
+        bitmap = if (selectedImageResId != null || selectedImageResId != -1) {
+            BitmapFactory.decodeResource(
+                context.resources,
+                selectedImageResId)
+        }else{
+            BitmapFactory.decodeResource(
+                context.resources,
+                R.drawable.playership)
+        }
+
+    }
+
 
     // How wide and high our ship will be
 //    val width = screenX / 20f
