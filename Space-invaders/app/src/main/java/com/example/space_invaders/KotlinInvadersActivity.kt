@@ -24,8 +24,7 @@ class KotlinInvadersActivity : Activity() {
         // Initialize gameView and set it as the view
         kotlinInvadersView = KotlinInvadersView(this, size)
         setContentView(kotlinInvadersView)
-//        val intent = Intent(this, DockYard::class.java)
-//        startActivity(intent)
+
     }
 
     // This method executes when the player starts the game
