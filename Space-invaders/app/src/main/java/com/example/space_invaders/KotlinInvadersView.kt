@@ -6,6 +6,8 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.graphics.*
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.preference.PreferenceManager
@@ -200,6 +202,10 @@ class KotlinInvadersView(context: Context,
         uhOrOh = !uhOrOh
 
     }
+
+    val originalBitmap = playerShip.bitmap  // Store original spaceship bitmap
+
+    val explosionBitmap = BitmapFactory.decodeResource(context.resources, R.drawable.explosion) // Explosion bitmap
 
     private fun update(fps: Long) {
         // Update the state of all the game objects
@@ -400,6 +406,36 @@ class KotlinInvadersView(context: Context,
                     bullet.isActive = false
                     lives --
 
+                    // Get the explosion image and scale it to the player ship size
+                    val explosionBitmap = BitmapFactory.decodeResource(
+                        context.resources,
+                        R.drawable.explosion)
+                    val scaledExplosionBitmap = Bitmap.createScaledBitmap(
+                        explosionBitmap,
+                        playerShip.width.toInt(),
+                        playerShip.height.toInt(),
+                        false)
+
+                    // Change the player ship's image to the scaled explosion
+                    playerShip.bitmap = scaledExplosionBitmap
+
+                    // Create a Handler to revert back to original image after 2 seconds
+                    val handler = Handler(Looper.getMainLooper())
+                    handler.postDelayed({
+                        // Get the original image and scale it to the player ship size
+                        val originalBitmap = BitmapFactory.decodeResource(
+                            context.resources,
+                            R.drawable.playership)
+                        val scaledOriginalBitmap = Bitmap.createScaledBitmap(
+                            originalBitmap,
+                            playerShip.width.toInt(),
+                            playerShip.height.toInt(),
+                            false)
+
+                        // Revert back to the scaled original image
+                        playerShip.bitmap = scaledOriginalBitmap
+                    }, 2000) // Delay of 2 seconds (2000 milliseconds)
+                    
                     // get shared preferences
                     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
@@ -428,15 +464,22 @@ class KotlinInvadersView(context: Context,
             }
         }
 
-        if (lost) {
-            paused = true
-            lives = 3
-            score = 0
-            waves = 1
-            invaders.clear()
-            bricks.clear()
-            invadersBullets.clear()
-            prepareLevel()
+        // Is it game over?
+        if (lives == 0) {
+            lost = true
+
+            // Create a Handler to reset the game after 2 seconds
+            val handler = Handler(Looper.getMainLooper())
+            handler.postDelayed({
+                paused = true
+                lives = 3
+                score = 0
+                waves = 1
+                invaders.clear()
+                bricks.clear()
+                invadersBullets.clear()
+                prepareLevel()
+            }, 2000) // Delay of 2 seconds (2000 milliseconds)
         }
     }
 
