@@ -37,9 +37,9 @@ class PlayerShip(context: Context,
 
     // How wide and high our ship will be
 //    val width = screenX / 20f
-    val width = screenX / 13f
+    val width = screenX / 5f
 //    private val height = screenY / 20f
-    private val height = screenY / 25f
+    private val height = screenY / 10f
 
     // This keeps track of where the ship is
     val position = RectF(

@@ -10,7 +10,8 @@ class KotlinInvadersActivity : Activity() {
     // kotlinInvadersView will be the view of the game
     // It will also hold the logic of the game
     // and respond to screen touches as well
-    private var kotlinInvadersView: KotlinInvadersView? = null
+    //private var kotlinInvadersView: KotlinInvadersView? = null
+    private var kotlinInvadersViewNew: KotlinInvadersViewNew? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,8 +23,10 @@ class KotlinInvadersActivity : Activity() {
         display.getSize(size)
 
         // Initialize gameView and set it as the view
-        kotlinInvadersView = KotlinInvadersView(this, size)
-        setContentView(kotlinInvadersView)
+//        kotlinInvadersView = KotlinInvadersView(this, size)
+//        setContentView(kotlinInvadersView)
+        kotlinInvadersViewNew = KotlinInvadersViewNew(this, size)
+        setContentView(kotlinInvadersViewNew)
 
     }
 
@@ -32,7 +35,7 @@ class KotlinInvadersActivity : Activity() {
         super.onResume()
 
         // Tell the gameView resume method to execute
-        kotlinInvadersView?.resume()
+        kotlinInvadersViewNew?.resume()
     }
 
     // This method executes when the player quits the game
@@ -40,6 +43,6 @@ class KotlinInvadersActivity : Activity() {
         super.onPause()
 
         // Tell the gameView pause method to execute
-        kotlinInvadersView?.pause()
+        kotlinInvadersViewNew?.pause()
     }
 }

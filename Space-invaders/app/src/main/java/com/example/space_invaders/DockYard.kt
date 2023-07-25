@@ -17,8 +17,12 @@ class DockYard : AppCompatActivity() {
 
     private val imageList = listOf(
         R.drawable.playership, // Add more image resource IDs as needed
-        R.drawable.invader1,
-        R.drawable.invader2
+        R.drawable.spaceship1,
+        R.drawable.spaceship2,
+        R.drawable.spaceship3,
+        R.drawable.spaceship4,
+        R.drawable.spaceship5,
+        R.drawable.spaceship6
     )
 
     private var currentIndex = 0
