@@ -2,6 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:foreground="@drawable/stars_background">
+    android:foreground="@drawable/night_sky_stars">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -458,6 +458,13 @@ class KotlinInvadersViewNew(context: Context,
             // Draw the background color
             canvas.drawColor(Color.argb(255, 0, 0, 0))
 
+            var tempBackgroundBitmap: Bitmap
+
+//            tempBackgroundBitmap = BitmapFactory.decodeResource(context.resources,R.drawable.stars_background_low)
+            tempBackgroundBitmap = BitmapFactory.decodeResource(context.resources,R.drawable.night_sky_stars)
+            canvas.drawBitmap(Bitmap.createScaledBitmap(tempBackgroundBitmap,size.x.toInt(), size.y.toInt() , false),0f, 0f,paint)
+
+
             // Choose the brush color for drawing
             paint.color = Color.argb(255, 0, 255, 0)
 

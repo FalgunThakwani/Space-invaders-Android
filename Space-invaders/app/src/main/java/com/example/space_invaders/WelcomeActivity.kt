@@ -21,12 +21,12 @@ class WelcomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
 
-        val logoImageView = findViewById<ImageView>(R.id.logoImageView);
-
-        Handler().postDelayed({
-            logoImageView.visibility = View.VISIBLE
-            logoImageView.animate().alpha(1f).setDuration(2000).start()
-        }, SPLASH_DELAY)
+//        val logoImageView = findViewById<ImageView>(R.id.logoImageView);
+//
+//        Handler().postDelayed({
+//            logoImageView.visibility = View.VISIBLE
+//            logoImageView.animate().alpha(1f).setDuration(2000).start()
+//        }, SPLASH_DELAY)
 
         // Start the main activity after the delay
         Handler().postDelayed({

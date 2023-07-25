@@ -471,12 +471,7 @@ class KotlinInvadersView(context: Context,
         if (lives == 0) {
             lost = true
 
-            // stop the game thread
-            playing = false
-
-            return
-
-            /*// Create a Handler to reset the game after 2 seconds
+            // Create a Handler to reset the game after 2 seconds
             val handler = Handler(Looper.getMainLooper())
             handler.postDelayed({
                 paused = true
@@ -487,12 +482,11 @@ class KotlinInvadersView(context: Context,
                 bricks.clear()
                 invadersBullets.clear()
                 prepareLevel()
-            }, 2000) // Delay of 2 seconds (2000 milliseconds)*/
+            }, 2000) // Delay of 2 seconds (2000 milliseconds)
         }
     }
 
     private fun draw() {
-
         // Make sure our drawing surface is valid or the game will crash
         if (holder.surface.isValid) {
             // Lock the canvas ready to draw
@@ -674,27 +668,27 @@ class KotlinInvadersView(context: Context,
 
         when (motionEvent.action) {
 
-            // Player has touched the screen
-            // Or moved their finger while touching screen
-            MotionEvent.ACTION_POINTER_DOWN,
-            MotionEvent.ACTION_DOWN,
-            MotionEvent.ACTION_MOVE,
-            MotionEvent.ACTION_BUTTON_PRESS-> {
-                paused = false
-
-                if (motionEvent.y < settingArea) {
-                    if (motionEvent.x > size.x - 100) {
-                        gameOver(false)
-                        print("55555555555555555555555")
-                    }
-                    else {
-                        print("2222222222222222222222")
-                    }
-                }
-                else {
-                    print("333333333333333333333333")
-                }
-            }
+//            // Player has touched the screen
+//            // Or moved their finger while touching screen
+//            MotionEvent.ACTION_POINTER_DOWN,
+//            MotionEvent.ACTION_DOWN,
+//            MotionEvent.ACTION_MOVE,
+//            MotionEvent.ACTION_BUTTON_PRESS-> {
+//                paused = false
+//
+//                if (motionEvent.y < settingArea) {
+//                    if (motionEvent.x > size.x - 100) {
+//                        val intent = Intent(this.context, SettingsActivity::class.java)
+//                        context.startActivity(intent)
+//                    }
+//                    else {
+//                        print("2222222222222222222222")
+//                    }
+//                }
+//                else {
+//                    print("333333333333333333333333")
+//                }
+//            }
 
             // Player has removed finger from screen
             MotionEvent.ACTION_POINTER_UP,
@@ -705,7 +699,6 @@ class KotlinInvadersView(context: Context,
             }
 
         }
-
         return true
     }
 
