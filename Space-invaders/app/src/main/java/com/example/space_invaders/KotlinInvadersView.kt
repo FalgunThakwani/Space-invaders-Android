@@ -646,27 +646,27 @@ class KotlinInvadersView(context: Context,
 
         when (motionEvent.action) {
 
-            // Player has touched the screen
-            // Or moved their finger while touching screen
-            MotionEvent.ACTION_POINTER_DOWN,
-            MotionEvent.ACTION_DOWN,
-            MotionEvent.ACTION_MOVE,
-            MotionEvent.ACTION_BUTTON_PRESS-> {
-                paused = false
-
-                if (motionEvent.y < settingArea) {
-                    if (motionEvent.x > size.x - 100) {
-                        val intent = Intent(this.context, SettingsActivity::class.java)
-                        context.startActivity(intent)
-                    }
-                    else {
-                        print("2222222222222222222222")
-                    }
-                }
-                else {
-                    print("333333333333333333333333")
-                }
-            }
+//            // Player has touched the screen
+//            // Or moved their finger while touching screen
+//            MotionEvent.ACTION_POINTER_DOWN,
+//            MotionEvent.ACTION_DOWN,
+//            MotionEvent.ACTION_MOVE,
+//            MotionEvent.ACTION_BUTTON_PRESS-> {
+//                paused = false
+//
+//                if (motionEvent.y < settingArea) {
+//                    if (motionEvent.x > size.x - 100) {
+//                        val intent = Intent(this.context, SettingsActivity::class.java)
+//                        context.startActivity(intent)
+//                    }
+//                    else {
+//                        print("2222222222222222222222")
+//                    }
+//                }
+//                else {
+//                    print("333333333333333333333333")
+//                }
+//            }
 
             // Player has removed finger from screen
             MotionEvent.ACTION_POINTER_UP,

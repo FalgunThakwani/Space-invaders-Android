@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="@drawable/stars_background"
+    android:background="@drawable/night_sky_stars"
     tools:context=".SettingsActivity">
 
     <TextView
