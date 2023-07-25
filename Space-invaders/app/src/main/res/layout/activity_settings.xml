@@ -8,6 +8,18 @@
     tools:context=".SettingsActivity">
 
     <TextView
+        android:id="@+id/PlayerInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="124dp"
+        android:text="Player Info"
+        android:textColor="@android:color/white"
+        android:textSize="28sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/switch_haptic_player"/>
+    <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -100,6 +112,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sounds" />
 
+    <TextView
+        android:id="@+id/sound_label_ingame2"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="132dp"
+        android:text="Player Name"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sounds"/>
     <Switch
         android:id="@+id/switch_sound_ingame"
         android:layout_width="wrap_content"
@@ -107,5 +128,24 @@
         app:layout_constraintBottom_toBottomOf="@+id/sound_label_ingame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/sound_label_ingame" />
+    <EditText
+        android:id="@+id/editTextPlayerName2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:ems="10" android:inputType="textPersonName"
+        android:text="XYZ" android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/sound_label_ingame2" app:layout_constraintTop_toBottomOf="@+id/PlayerInfo"/>
+    <Button
+        android:id="@+id/button_setting_back"
+        android:layout_width="125dp"
+        android:layout_height="50dp" android:layout_marginStart="143dp"
+        android:layout_marginEnd="143dp"
+        android:layout_marginBottom="30dp" android:text="BACK"
+        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

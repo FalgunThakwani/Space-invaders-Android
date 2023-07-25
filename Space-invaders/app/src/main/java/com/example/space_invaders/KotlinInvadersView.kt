@@ -1,9 +1,13 @@
 package com.example.space_invaders
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
+import androidx.appcompat.app.AppCompatActivity
 import android.graphics.*
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.preference.PreferenceManager
@@ -12,7 +16,7 @@ import android.util.Log
 import android.view.MotionEvent
 
 class KotlinInvadersView(context: Context,
-                         private val size: Point)
+                         private val size: Point) // x: 1080, y: 2201
     : SurfaceView(context),
         Runnable {
 
@@ -46,7 +50,8 @@ class KotlinInvadersView(context: Context,
     // The player's playerBullet
     // much faster and half the length
     // compared to invader's bullet
-    private var playerBullet = Bullet(size.y, 1200f, 40f)
+//    private var playerBullet = Bullet(size.y, 1200f, 40f)
+    private var playerBullet = Bullet(size.y, 2400f, 40f)
 
     // The invaders bullets
     private val invadersBullets = ArrayList<Bullet>()
@@ -79,7 +84,7 @@ class KotlinInvadersView(context: Context,
 
 
     // Get the preference for haptic feedback from user
-    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+    val sharedPreferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
     // Get user's preference for sound
     val soundEnabled = sharedPreferences.getBoolean("SOUND_INGAME", true)
@@ -151,7 +156,9 @@ class KotlinInvadersView(context: Context,
 
     override fun run() {
         // This variable tracks the game frame rate
-        var fps: Long = 0
+        var fps: Long = 60
+//        var fps: Long = 20
+
 
         while (playing) {
 
@@ -195,6 +202,10 @@ class KotlinInvadersView(context: Context,
         uhOrOh = !uhOrOh
 
     }
+
+    val originalBitmap = playerShip.bitmap  // Store original spaceship bitmap
+
+    val explosionBitmap = BitmapFactory.decodeResource(context.resources, R.drawable.explosion) // Explosion bitmap
 
     private fun update(fps: Long) {
         // Update the state of all the game objects
@@ -395,6 +406,36 @@ class KotlinInvadersView(context: Context,
                     bullet.isActive = false
                     lives --
 
+                    // Get the explosion image and scale it to the player ship size
+                    val explosionBitmap = BitmapFactory.decodeResource(
+                        context.resources,
+                        R.drawable.explosion)
+                    val scaledExplosionBitmap = Bitmap.createScaledBitmap(
+                        explosionBitmap,
+                        playerShip.width.toInt(),
+                        playerShip.height.toInt(),
+                        false)
+
+                    // Change the player ship's image to the scaled explosion
+                    playerShip.bitmap = scaledExplosionBitmap
+
+                    // Create a Handler to revert back to original image after 2 seconds
+                    val handler = Handler(Looper.getMainLooper())
+                    handler.postDelayed({
+                        // Get the original image and scale it to the player ship size
+                        val originalBitmap = BitmapFactory.decodeResource(
+                            context.resources,
+                            R.drawable.playership)
+                        val scaledOriginalBitmap = Bitmap.createScaledBitmap(
+                            originalBitmap,
+                            playerShip.width.toInt(),
+                            playerShip.height.toInt(),
+                            false)
+
+                        // Revert back to the scaled original image
+                        playerShip.bitmap = scaledOriginalBitmap
+                    }, 2000) // Delay of 2 seconds (2000 milliseconds)
+                    
                     // get shared preferences
                     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
@@ -409,7 +450,7 @@ class KotlinInvadersView(context: Context,
                             vibrator.vibrate(500)
                         }
                     }
-
+                    val soundEnabled = sharedPreferences.getBoolean("SOUND_ENABLED", true)
                     if (soundEnabled) {
                         soundPlayer.playSound(SoundPlayer.damageShelterID)
                     }
@@ -423,15 +464,22 @@ class KotlinInvadersView(context: Context,
             }
         }
 
-        if (lost) {
-            paused = true
-            lives = 3
-            score = 0
-            waves = 1
-            invaders.clear()
-            bricks.clear()
-            invadersBullets.clear()
-            prepareLevel()
+        // Is it game over?
+        if (lives == 0) {
+            lost = true
+
+            // Create a Handler to reset the game after 2 seconds
+            val handler = Handler(Looper.getMainLooper())
+            handler.postDelayed({
+                paused = true
+                lives = 3
+                score = 0
+                waves = 1
+                invaders.clear()
+                bricks.clear()
+                invadersBullets.clear()
+                prepareLevel()
+            }, 2000) // Delay of 2 seconds (2000 milliseconds)
         }
     }
 
@@ -443,6 +491,19 @@ class KotlinInvadersView(context: Context,
 
             // Draw the background color
             canvas.drawColor(Color.argb(255, 0, 0, 0))
+
+//            canvas.drawBitmap(BitmapFactory.decodeResource(context.resources,R.drawable.stars_background),20f, 75f,null)
+
+            var tempBackgroundBitmap: Bitmap
+
+            tempBackgroundBitmap = BitmapFactory.decodeResource(context.resources,R.drawable.stars_background_low)
+            canvas.drawBitmap(Bitmap.createScaledBitmap(tempBackgroundBitmap,size.x.toInt(), size.y.toInt() , false),0f, 0f,paint)
+
+            var tempSettingBitmap: Bitmap
+
+            tempSettingBitmap = BitmapFactory.decodeResource(context.resources,R.drawable.setting_logo_2)
+            canvas.drawBitmap(Bitmap.createScaledBitmap(tempSettingBitmap,size.x.toInt()/11, size.y.toInt()/22 , false), size.x - 100f , 0f,paint)
+
 
             // Choose the brush color for drawing
             paint.color = Color.argb(255, 0, 255, 0)
@@ -572,6 +633,42 @@ class KotlinInvadersView(context: Context,
             }
 
         // Player has removed finger from screen
+            MotionEvent.ACTION_POINTER_UP,
+            MotionEvent.ACTION_UP -> {
+                if (motionEvent.y > motionArea) {
+                    playerShip.moving = PlayerShip.stopped
+                }
+            }
+
+        }
+
+        val settingArea = size.y / 8
+
+        when (motionEvent.action) {
+
+            // Player has touched the screen
+            // Or moved their finger while touching screen
+            MotionEvent.ACTION_POINTER_DOWN,
+            MotionEvent.ACTION_DOWN,
+            MotionEvent.ACTION_MOVE,
+            MotionEvent.ACTION_BUTTON_PRESS-> {
+                paused = false
+
+                if (motionEvent.y < settingArea) {
+                    if (motionEvent.x > size.x - 100) {
+                        val intent = Intent(this.context, SettingsActivity::class.java)
+                        context.startActivity(intent)
+                    }
+                    else {
+                        print("2222222222222222222222")
+                    }
+                }
+                else {
+                    print("333333333333333333333333")
+                }
+            }
+
+            // Player has removed finger from screen
             MotionEvent.ACTION_POINTER_UP,
             MotionEvent.ACTION_UP -> {
                 if (motionEvent.y > motionArea) {

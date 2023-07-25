@@ -22,7 +22,7 @@ class BulletNew(screenY: Int,
     // Going nowhere
     private var heading = -1
 
-    private val width = 2
+    private val width = 50
     private var height = screenY / heightModifier
 
     var isActive = false

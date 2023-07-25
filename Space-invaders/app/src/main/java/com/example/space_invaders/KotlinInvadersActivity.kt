@@ -28,6 +28,12 @@ class KotlinInvadersActivity : Activity() {
         kotlinInvadersViewNew = KotlinInvadersViewNew(this, size)
         setContentView(kotlinInvadersViewNew)
 
+//        setContentView(R.layout.activity_background)
+
+//        kotlinInvadersView = KotlinInvadersView(this, size)
+//        setContentView(kotlinInvadersView)
+//>>>>>>> 00f560ebcc06d5c5b30107993893e10277a57200
+
     }
 
     // This method executes when the player starts the game

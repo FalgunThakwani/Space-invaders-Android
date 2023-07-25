@@ -28,6 +28,9 @@ class DockYard : AppCompatActivity() {
     private var currentIndex = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        getSupportActionBar()?.hide()
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dock_yard)
 
@@ -59,8 +62,6 @@ class DockYard : AppCompatActivity() {
     }
 
     private fun selectImage() {
-        // Perform your action when the "Select" button is clicked
-        // For this example, we'll display a toast message with the selected image index
 
         val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
