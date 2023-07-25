@@ -1,6 +1,7 @@
 package com.example.space_invaders
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.*
 import android.os.Build
@@ -187,6 +188,7 @@ class KotlinInvadersViewNew(context: Context,
             if (!paused && ((startFrameTime - lastMenaceTime) > menaceInterval))
                 menacePlayer()
         }
+        gameOver(true)
     }
 
     private fun menacePlayer() {
@@ -436,9 +438,10 @@ class KotlinInvadersViewNew(context: Context,
 
         if (lost) {
             paused = true
-            lives = 3
+            playing = false
+/*            lives = 3
             score = 0
-            waves = 1
+            waves = 1*/
             invaders.clear()
             bricks.clear()
             invadersBullets.clear()
@@ -545,6 +548,25 @@ class KotlinInvadersViewNew(context: Context,
         playing = true
         prepareLevel()
         gameThread.start()
+    }
+
+    /**
+     * This method is calleed whether the game is over or paused
+     * @param isGameOver is true if the game is over
+     */
+    private fun gameOver(isGameOver : Boolean) {
+        val intent = Intent(this.context, GameOverActivity::class.java)
+
+        // pass score & waves & highScore
+        intent.putExtra("highScore", highScore)
+        intent.putExtra("score", score)
+        intent.putExtra("waves", waves)
+        intent.putExtra("livesLeft", lives)
+        intent.putExtra("livesUsed", 3 - lives)
+        intent.putExtra("isGameOver", isGameOver)
+
+        context.startActivity(intent)
+
     }
 
     // The SurfaceView class implements onTouchListener

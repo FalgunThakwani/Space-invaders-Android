@@ -35,8 +35,8 @@ class HomeActivity : AppCompatActivity() {
         }
 
         dockyardButton.setOnClickListener {
-                    val intent = Intent(this, DockYard::class.java)
-        startActivity(intent)
+            val intent = Intent(this, DockYard::class.java)
+            startActivity(intent)
         }
 
         // Navigate to SettingsActivity when the "SETTINGS" button is clicked

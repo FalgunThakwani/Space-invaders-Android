@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/stars_background"
+    tools:context=".GameOverActivity">
+
+    <Button
+        android:id="@+id/button_gameOver_resume"
+        android:layout_width="125dp"
+        android:layout_height="50dp" android:layout_marginStart="143dp"
+        android:layout_marginBottom="20dp"
+        android:text="RESUME" app:layout_constraintBottom_toTopOf="@+id/button_gameOver_restart"
+        app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+        android:id="@+id/textView_livesLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="100dp" android:text="TextView"
+        android:textColor="#FFFFFF" android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/textView_livesUsed"/>
+    <TextView
+        android:id="@+id/textView_livesUsed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="100dp" android:text="TextView"
+        android:textColor="#FFFFFF" android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/textView_waves"/>
+    <TextView
+        android:id="@+id/textView_waves"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="100dp" android:text="TextView"
+        android:textColor="#FFFFFF" android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/textView_score"/>
+    <TextView
+        android:id="@+id/textView_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" android:layout_marginEnd="100dp"
+        android:text="TextView" android:textColor="#FFFFFF"
+        android:textSize="18sp" app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_highScore"/>
+    <TextView
+        android:id="@+id/label_livesLeft"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="20dp"
+        android:text="Lives Left: "
+        android:textColor="@android:color/white" android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/label_livesUsed"/>
+    <TextView
+        android:id="@+id/label_livesUsed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="20dp"
+        android:text="Lives Used: "
+        android:textColor="@android:color/white"
+        android:textSize="18sp" app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_waves"/>
+    <TextView
+        android:id="@+id/label_waves"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="20dp"
+        android:text="Waves: "
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/label_currentScore"/>
+    <TextView
+        android:id="@+id/label_currentScore"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="20dp"
+        android:text="Current Score: "
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/label_bestScore"/>
+    <TextView
+        android:id="@+id/label_bestScore"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="100dp"
+        android:text="Best Score: "
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/textView_logo"/>
+    <TextView
+        android:id="@+id/textView_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_marginStart="70dp" android:layout_marginTop="50dp"
+        android:layout_marginEnd="71dp" android:text="SPACE INVADERS" android:textColor="@android:color/white"
+        android:textSize="34sp" app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <Button
+        android:id="@+id/button_gameOver_home"
+        android:layout_width="125dp"
+        android:layout_height="50dp" android:layout_marginStart="143dp"
+        android:layout_marginBottom="44dp" android:text="HOME"
+        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"/>
+    <Button
+        android:id="@+id/button_gameOver_restart"
+        android:layout_width="125dp"
+        android:layout_height="50dp" android:layout_marginStart="143dp" android:layout_marginBottom="20dp"
+        android:text="RESTART" app:layout_constraintBottom_toTopOf="@+id/button_gameOver_home"
+        app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+        android:id="@+id/textView_highScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp" android:layout_marginEnd="100dp"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_logo"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

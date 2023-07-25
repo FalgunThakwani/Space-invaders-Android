@@ -159,7 +159,6 @@ class KotlinInvadersView(context: Context,
         var fps: Long = 60
 //        var fps: Long = 20
 
-
         while (playing) {
 
             // Capture the current time
@@ -207,6 +206,10 @@ class KotlinInvadersView(context: Context,
 
     val explosionBitmap = BitmapFactory.decodeResource(context.resources, R.drawable.explosion) // Explosion bitmap
 
+    /**
+     * Update all the game objects
+     * @param fps  Frames per second
+     */
     private fun update(fps: Long) {
         // Update the state of all the game objects
 
@@ -435,7 +438,7 @@ class KotlinInvadersView(context: Context,
                         // Revert back to the scaled original image
                         playerShip.bitmap = scaledOriginalBitmap
                     }, 2000) // Delay of 2 seconds (2000 milliseconds)
-                    
+
                     // get shared preferences
                     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
@@ -468,7 +471,12 @@ class KotlinInvadersView(context: Context,
         if (lives == 0) {
             lost = true
 
-            // Create a Handler to reset the game after 2 seconds
+            // stop the game thread
+            playing = false
+
+            return
+
+            /*// Create a Handler to reset the game after 2 seconds
             val handler = Handler(Looper.getMainLooper())
             handler.postDelayed({
                 paused = true
@@ -479,11 +487,12 @@ class KotlinInvadersView(context: Context,
                 bricks.clear()
                 invadersBullets.clear()
                 prepareLevel()
-            }, 2000) // Delay of 2 seconds (2000 milliseconds)
+            }, 2000) // Delay of 2 seconds (2000 milliseconds)*/
         }
     }
 
     private fun draw() {
+
         // Make sure our drawing surface is valid or the game will crash
         if (holder.surface.isValid) {
             // Lock the canvas ready to draw
@@ -596,6 +605,25 @@ class KotlinInvadersView(context: Context,
         gameThread.start()
     }
 
+    /**
+     * This method is calleed whether the game is over or paused
+     * @param isGameOver is true if the game is over
+     */
+    private fun gameOver(isGameOver : Boolean) {
+        val intent = Intent(this.context, GameOverActivity::class.java)
+
+        // pass score & waves & highScore
+        intent.putExtra("highScore", highScore)
+        intent.putExtra("score", score)
+        intent.putExtra("waves", waves)
+        intent.putExtra("livesLeft", lives)
+        intent.putExtra("livesUsed", 3 - lives)
+        intent.putExtra("isGameOver", isGameOver)
+
+        context.startActivity(intent)
+
+    }
+
     // The SurfaceView class implements onTouchListener
     // So we can override this method and detect screen touches.
     override fun onTouchEvent(motionEvent: MotionEvent): Boolean {
@@ -656,8 +684,8 @@ class KotlinInvadersView(context: Context,
 
                 if (motionEvent.y < settingArea) {
                     if (motionEvent.x > size.x - 100) {
-                        val intent = Intent(this.context, SettingsActivity::class.java)
-                        context.startActivity(intent)
+                        gameOver(false)
+                        print("55555555555555555555555")
                     }
                     else {
                         print("2222222222222222222222")
@@ -677,6 +705,7 @@ class KotlinInvadersView(context: Context,
             }
 
         }
+
         return true
     }
 
