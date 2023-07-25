@@ -464,6 +464,11 @@ class KotlinInvadersViewNew(context: Context,
             tempBackgroundBitmap = BitmapFactory.decodeResource(context.resources,R.drawable.night_sky_stars)
             canvas.drawBitmap(Bitmap.createScaledBitmap(tempBackgroundBitmap,size.x.toInt(), size.y.toInt() , false),0f, 0f,paint)
 
+            // draw the pause button
+            var tempSettingBitmap: Bitmap
+            tempSettingBitmap = BitmapFactory.decodeResource(context.resources,R.drawable.setting_logo_2)
+            canvas.drawBitmap(Bitmap.createScaledBitmap(tempSettingBitmap,size.x.toInt()/11, size.y.toInt()/22 , false), size.x - 100f , 0f,paint)
+
 
             // Choose the brush color for drawing
             paint.color = Color.argb(255, 0, 255, 0)
@@ -573,7 +578,6 @@ class KotlinInvadersViewNew(context: Context,
         intent.putExtra("isGameOver", isGameOver)
 
         context.startActivity(intent)
-
     }
 
     // The SurfaceView class implements onTouchListener
@@ -612,7 +616,43 @@ class KotlinInvadersViewNew(context: Context,
                 }
             }
 
+
+
         // Player has removed finger from screen
+            MotionEvent.ACTION_POINTER_UP,
+            MotionEvent.ACTION_UP -> {
+                if (motionEvent.y > motionArea) {
+                    playerShip.moving = PlayerShip.stopped
+                }
+            }
+
+        }
+        val settingArea = size.y / 8
+        when (motionEvent.action) {
+
+            // Player has touched the screen
+            // Or moved their finger while touching screen
+            MotionEvent.ACTION_POINTER_DOWN,
+            MotionEvent.ACTION_DOWN,
+            MotionEvent.ACTION_MOVE,
+            MotionEvent.ACTION_BUTTON_PRESS-> {
+                paused = false
+
+                if (motionEvent.y < settingArea) {
+                    if (motionEvent.x > size.x - 100) {
+                        // GameOverActivity with the RESUME button
+                        gameOver(false)
+                    }
+                    else {
+                        print("2222222222222222222222")
+                    }
+                }
+                else {
+                    print("333333333333333333333333")
+                }
+            }
+
+            // Player has removed finger from screen
             MotionEvent.ACTION_POINTER_UP,
             MotionEvent.ACTION_UP -> {
                 if (motionEvent.y > motionArea) {

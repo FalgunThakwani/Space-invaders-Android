@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/stars_background"
+    android:background="@drawable/night_sky_stars"
     tools:context=".GameOverActivity">
 
     <Button

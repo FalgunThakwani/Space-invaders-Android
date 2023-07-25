@@ -20,7 +20,7 @@ class GameOverActivity : AppCompatActivity() {
         val waves = intent.getIntExtra("waves", 0)
         val livesUsed = intent.getIntExtra("livesUsed", 0)
         val livesLeft = intent.getIntExtra("livesLeft", 0)
-        val isGameOver = intent.getBooleanExtra("isGameOver", true)
+        val isGameOver = intent.getBooleanExtra("isGameOver", false)
 
         val highScoreTextView = findViewById<TextView>(R.id.textView_highScore)
         val scoreTextView = findViewById<TextView>(R.id.textView_score)
@@ -47,6 +47,8 @@ class GameOverActivity : AppCompatActivity() {
         resumeButton.setOnClickListener {
             val intent = Intent(this, KotlinInvadersActivity::class.java)
             // TODO: resume the game
+            startActivity(intent)
+            finish()
         }
 
         // when the RESTART button is clicked

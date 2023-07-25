@@ -665,7 +665,6 @@ class KotlinInvadersView(context: Context,
         }
 
         val settingArea = size.y / 8
-
         when (motionEvent.action) {
 
 //            // Player has touched the screen
