@@ -504,7 +504,7 @@ class KotlinInvadersViewNew(context: Context,
             // draw the exit button
             var tempSettingBitmap: Bitmap
             tempSettingBitmap = BitmapFactory.decodeResource(context.resources,R.drawable.exit)
-            canvas.drawBitmap(Bitmap.createScaledBitmap(tempSettingBitmap,size.x.toInt()/11, size.y.toInt()/22 , false), size.x - 120f , -10f,paint)
+            canvas.drawBitmap(Bitmap.createScaledBitmap(tempSettingBitmap,size.x.toInt()/11, size.y.toInt()/22 , false), size.x - 100f , 0f,paint)
 
 
             // Choose the brush color for drawing
@@ -615,9 +615,9 @@ class KotlinInvadersViewNew(context: Context,
         intent.putExtra("isGameOver", isGameOver)
 
         context.startActivity(intent)
-        if(!isGameOver){
+        /*if(!isGameOver){
             Toast.makeText(context, "You have aborted the ship!", Toast.LENGTH_SHORT).show()
-        }
+        }*/
     }
 
     // The SurfaceView class implements onTouchListener

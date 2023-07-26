@@ -57,11 +57,31 @@ class RegisterActivity : AppCompatActivity() {
         // Get an instance of the SharedPreferences.Editor
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
 
-        // TODO: Validate the player's name
-        // Store the player's name
-        editor.putString(PLAYER_NAME_KEY, name)
+        // Validate the player's name
+        if(!validatePlayerName(name)) {
+            // Display an error message
+            playerNameEditText.error = "Invalid name"
+            return
+        }else{
+            // Store the player's name
+            editor.putString(PLAYER_NAME_KEY, name)
 
-        // Commit the changes
-        editor.apply()
+            // Commit the changes
+            editor.apply()
+        }
+    }
+
+    /**
+     * Validates the player's name.
+     * @param name The player's name.
+     */
+    fun validatePlayerName(name: String): Boolean {
+        // 3-12 characters
+        // allowed special characters: - _ .
+        // first character must be a letter
+        // last character must be a letter or number
+        // no consecutive special characters
+        val regex = Regex("^[a-zA-Z][a-zA-Z0-9-_.]{1,10}[a-zA-Z0-9]$")
+        return regex.matches(name)
     }
 }

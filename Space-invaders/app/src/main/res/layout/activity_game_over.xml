@@ -121,8 +121,10 @@
     <TextView
         android:id="@+id/textView_abort"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:layout_marginTop="40dp"
+        android:layout_height="wrap_content" android:layout_marginStart="76dp"
+        android:layout_marginTop="40dp" android:layout_marginEnd="77dp"
         android:text="YOU HAVE ABORTED THE SHIP!" android:textColor="#EC3232"
         android:textSize="18sp" android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/textView_logo" tools:layout_editor_absoluteX="76dp"/>
+        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_logo"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
