@@ -33,12 +33,14 @@ class HomeActivity : AppCompatActivity() {
         startButton.setOnClickListener {
             val intent = Intent(this, KotlinInvadersActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         // Navigate to DockYard when the "DOCKYARD" button is clicked
         dockyardButton.setOnClickListener {
             val intent = Intent(this, DockYard::class.java)
             startActivity(intent)
+            finish()
         }
 
         // Navigate to TutorialActivity when the "TUTORIAL" button is clicked
@@ -52,6 +54,7 @@ class HomeActivity : AppCompatActivity() {
         settingsButton.setOnClickListener {
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 }

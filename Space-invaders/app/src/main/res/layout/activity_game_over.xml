@@ -8,13 +8,6 @@
     android:background="@drawable/night_sky_stars"
     tools:context=".GameOverActivity">
 
-    <Button
-        android:id="@+id/button_gameOver_resume"
-        android:layout_width="125dp"
-        android:layout_height="50dp" android:layout_marginStart="143dp"
-        android:layout_marginBottom="20dp"
-        android:text="RESUME" app:layout_constraintBottom_toTopOf="@+id/button_gameOver_restart"
-        app:layout_constraintStart_toStartOf="parent"/>
     <TextView
         android:id="@+id/textView_livesLeft"
         android:layout_width="wrap_content"
@@ -125,4 +118,11 @@
         android:textColor="#FFFFFF"
         android:textSize="18sp" app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_logo"/>
+    <TextView
+        android:id="@+id/textView_abort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_marginTop="40dp"
+        android:text="YOU HAVE ABORTED THE SHIP!" android:textColor="#EC3232"
+        android:textSize="18sp" android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/textView_logo" tools:layout_editor_absoluteX="76dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

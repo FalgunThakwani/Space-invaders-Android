@@ -27,8 +27,8 @@ class GameOverActivity : AppCompatActivity() {
         val wavesTextView = findViewById<TextView>(R.id.textView_waves)
         val livesUsedTextView = findViewById<TextView>(R.id.textView_livesUsed)
         val livesLeftTextView = findViewById<TextView>(R.id.textView_livesLeft)
+        val abortTextView = findViewById<TextView>(R.id.textView_abort)
 
-        val resumeButton = findViewById<Button>(R.id.button_gameOver_resume)
         val restartButton = findViewById<Button>(R.id.button_gameOver_restart)
         val homeButton = findViewById<Button>(R.id.button_gameOver_home)
 
@@ -39,16 +39,9 @@ class GameOverActivity : AppCompatActivity() {
         livesUsedTextView.text = "$livesUsed"
         livesLeftTextView.text = "$livesLeft"
 
-        // if the game is over, hide the RESUME button
-        if (isGameOver) {
-            resumeButton.visibility = Button.INVISIBLE
-        }
-
-        // when the RESUME button is clicked
-        resumeButton.setOnClickListener {
-            val intent = Intent(this, KotlinInvadersActivity::class.java)
-            startActivity(intent)
-            finish()
+        // if the game is over, hide the abort text
+        if (!isGameOver) {
+            abortTextView.visibility = TextView.INVISIBLE
         }
 
         // when the RESTART button is clicked

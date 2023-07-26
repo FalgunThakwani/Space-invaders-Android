@@ -11,6 +11,8 @@ import android.preference.PreferenceManager
 import android.view.SurfaceView
 import android.util.Log
 import android.view.MotionEvent
+import android.widget.Toast
+
 
 class KotlinInvadersViewNew(context: Context,
                             private val size: Point)
@@ -578,6 +580,9 @@ class KotlinInvadersViewNew(context: Context,
         intent.putExtra("isGameOver", isGameOver)
 
         context.startActivity(intent)
+        if(!isGameOver){
+            Toast.makeText(context, "You have aborted the ship!", Toast.LENGTH_SHORT).show()
+        }
     }
 
     // The SurfaceView class implements onTouchListener
@@ -640,7 +645,7 @@ class KotlinInvadersViewNew(context: Context,
 
                 if (motionEvent.y < settingArea) {
                     if (motionEvent.x > size.x - 100) {
-                        // GameOverActivity with the RESUME button
+                        // abort the ship
                         gameOver(false)
                     }
                     else {
