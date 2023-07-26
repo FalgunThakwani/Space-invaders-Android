@@ -1,6 +1,7 @@
 package com.example.space_invaders
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -50,17 +51,29 @@ class DockYard : AppCompatActivity() {
     private fun displayImage(index: Int) {
         val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val selectedImageResId = sharedPreferences.getInt("selectedImageResId", -1)
+
+        val highScoreSharedPreferences = getSharedPreferences("Kotlin Invaders", Context.MODE_PRIVATE)
+        var highScore =  highScoreSharedPreferences.getInt("highScore", 0)
+
         if (index in 0 until imageList.size) {
             imageView.setImageResource(imageList[index])
             currentIndex = index
 
-            // Update the text of the select button
-            if(selectedImageResId==imageList[index]){
-                btnSelect.text = "Selected";
-                btnSelect.isEnabled = false;
+            // the first ship is free
+            val requiredScore = index * 100
+            if(highScore < requiredScore){
+                // lock the ship if the score is not enough
+                btnSelect.text = "Best Score ${requiredScore} To Unlock"
+                btnSelect.isEnabled = false
             }else{
-                btnSelect.text = "Select";
-                btnSelect.isEnabled = true;
+                // score is enough
+                if(selectedImageResId==imageList[index]){
+                    btnSelect.text = "Selected";
+                    btnSelect.isEnabled = false;
+                }else{
+                    btnSelect.text = "Select";
+                    btnSelect.isEnabled = true;
+                }
             }
 
             btnLeft.visibility = if (currentIndex > 0) View.VISIBLE else View.INVISIBLE
