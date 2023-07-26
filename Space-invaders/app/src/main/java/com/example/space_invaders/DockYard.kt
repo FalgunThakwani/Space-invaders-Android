@@ -47,15 +47,21 @@ class DockYard : AppCompatActivity() {
     }
 
     private fun displayImage(index: Int) {
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val selectedImageResId = sharedPreferences.getInt("selectedImageResId", -1)
         if (index in 0 until imageList.size) {
             imageView.setImageResource(imageList[index])
             currentIndex = index
+            if(selectedImageResId==imageList[index]){
+                btnSelect.text = "Selected";
+            }else{
+                btnSelect.text = "Select";
+            }
 
             btnLeft.visibility = if (currentIndex > 0) View.VISIBLE else View.INVISIBLE
             btnRight.visibility = if (currentIndex < imageList.size - 1) View.VISIBLE else View.INVISIBLE
         }
     }
-
     private fun navigateImage(step: Int) {
         val newIndex = currentIndex + step
         displayImage(newIndex)

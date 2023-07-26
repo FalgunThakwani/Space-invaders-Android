@@ -325,8 +325,8 @@ class KotlinInvadersViewNew(context: Context,
                                 vibrator.vibrate(500)
                             }
                         }
-
                         // Play sound if enabled
+                        val soundEnabled = sharedPreferences.getBoolean("SOUND_ENABLED", true)
                         if (soundEnabled) {
                             soundPlayer.playSound(SoundPlayer.invaderExplodeID)
                         }
@@ -424,7 +424,8 @@ class KotlinInvadersViewNew(context: Context,
                             vibrator.vibrate(500)
                         }
                     }
-
+                    // Play sound if enabled
+                    val soundEnabled = sharedPreferences.getBoolean("SOUND_ENABLED", true)
                     if (soundEnabled) {
                         soundPlayer.playSound(SoundPlayer.damageShelterID)
                     }
@@ -463,8 +464,8 @@ class KotlinInvadersViewNew(context: Context,
             var tempBackgroundBitmap: Bitmap
 
 //            tempBackgroundBitmap = BitmapFactory.decodeResource(context.resources,R.drawable.stars_background_low)
-            tempBackgroundBitmap = BitmapFactory.decodeResource(context.resources,R.drawable.night_sky_stars)
-            canvas.drawBitmap(Bitmap.createScaledBitmap(tempBackgroundBitmap,size.x.toInt(), size.y.toInt() , false),0f, 0f,paint)
+//            tempBackgroundBitmap = BitmapFactory.decodeResource(context.resources,R.drawable.night_sky_stars)
+//            canvas.drawBitmap(Bitmap.createScaledBitmap(tempBackgroundBitmap,size.x.toInt(), size.y.toInt() , false),0f, 0f,paint)
 
             // draw the exit button
             var tempSettingBitmap: Bitmap
@@ -614,6 +615,8 @@ class KotlinInvadersViewNew(context: Context,
                                     playerShip.position.top,
                                     playerBullet.up)) {
 
+                        // Play sound if enabled
+                        val soundEnabled = sharedPreferences.getBoolean("SOUND_ENABLED", true)
                         if (soundEnabled) {
                             soundPlayer.playSound(SoundPlayer.damageShelterID)
                         }
