@@ -40,12 +40,16 @@ class RegisterActivity : AppCompatActivity() {
         // Set an on-click listener to the save button
         savePlayerNameButton.setOnClickListener {
             val playerName = playerNameEditText.text.toString()
-            savePlayerName(playerName)
-
-            // Navigate to HomeActivity
-            val intent = Intent(this, TutorialActivity::class.java)
-            startActivity(intent)
-            finish() // remove this activity from the stack
+            if(validatePlayerName(playerName)){
+                savePlayerName(playerName)
+                // Navigate to HomeActivity
+                val intent = Intent(this, TutorialActivity::class.java)
+                startActivity(intent)
+                finish() // remove this activity from the stack
+            }else{
+                // Display an error message
+                playerNameEditText.error = "Invalid player name"
+            }
         }
     }
 
@@ -57,11 +61,24 @@ class RegisterActivity : AppCompatActivity() {
         // Get an instance of the SharedPreferences.Editor
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
 
-        // TODO: Validate the player's name
         // Store the player's name
         editor.putString(PLAYER_NAME_KEY, name)
 
         // Commit the changes
         editor.apply()
+    }
+
+    /**
+     * Validates the player's name.
+     * @param name The player's name.
+     */
+    fun validatePlayerName(name: String): Boolean {
+        // 3-12 characters
+        // allowed special characters: - _ .
+        // first character must be a letter
+        // last character must be a letter or number
+        // no consecutive special characters
+        val regex = Regex("^[a-zA-Z][a-zA-Z0-9-_.]{1,10}[a-zA-Z0-9]$")
+        return regex.matches(name)
     }
 }

@@ -5,6 +5,8 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.*
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.preference.PreferenceManager
@@ -211,6 +213,8 @@ class KotlinInvadersViewNew(context: Context,
 
     }
 
+    val explosionBitmap = BitmapFactory.decodeResource(context.resources, R.drawable.explosion) // Explosion bitmap
+
     private fun update(fps: Long) {
         // Update the state of all the game objects
 
@@ -410,6 +414,36 @@ class KotlinInvadersViewNew(context: Context,
                     bullet.isActive = false
                     lives --
 
+                    // Get the explosion image and scale it to the player ship size
+                    val explosionBitmap = BitmapFactory.decodeResource(
+                        context.resources,
+                        R.drawable.explosion)
+                    val scaledExplosionBitmap = Bitmap.createScaledBitmap(
+                        explosionBitmap,
+                        playerShip.width.toInt(),
+                        playerShip.height.toInt(),
+                        false)
+
+                    // Change the player ship's image to the scaled explosion
+                    playerShip.bitmap = scaledExplosionBitmap
+
+                    // Create a Handler to revert back to original image after 2 seconds
+                    val handler = Handler(Looper.getMainLooper())
+                    handler.postDelayed({
+                        // Get the original image and scale it to the player ship size
+                        val originalBitmap = BitmapFactory.decodeResource(
+                            context.resources,
+                            R.drawable.playership)
+                        val scaledOriginalBitmap = Bitmap.createScaledBitmap(
+                            originalBitmap,
+                            playerShip.width.toInt(),
+                            playerShip.height.toInt(),
+                            false)
+
+                        // Revert back to the scaled original image
+                        playerShip.bitmap = scaledOriginalBitmap
+                    }, 2000) // Delay of 2 seconds (2000 milliseconds)
+
                     // get shared preferences
                     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
@@ -427,7 +461,7 @@ class KotlinInvadersViewNew(context: Context,
                     // Play sound if enabled
                     val soundEnabled = sharedPreferences.getBoolean("SOUND_ENABLED", true)
                     if (soundEnabled) {
-                        soundPlayer.playSound(SoundPlayer.damageShelterID)
+                        soundPlayer.playSound(SoundPlayer.playerExplodeID)
                     }
 
                     // Is it game over?
@@ -470,7 +504,7 @@ class KotlinInvadersViewNew(context: Context,
             // draw the exit button
             var tempSettingBitmap: Bitmap
             tempSettingBitmap = BitmapFactory.decodeResource(context.resources,R.drawable.exit)
-            canvas.drawBitmap(Bitmap.createScaledBitmap(tempSettingBitmap,size.x.toInt()/11, size.y.toInt()/22 , false), size.x - 120f , -10f,paint)
+            canvas.drawBitmap(Bitmap.createScaledBitmap(tempSettingBitmap,size.x.toInt()/11, size.y.toInt()/22 , false), size.x - 120f , 0f,paint)
 
 
             // Choose the brush color for drawing
@@ -581,9 +615,9 @@ class KotlinInvadersViewNew(context: Context,
         intent.putExtra("isGameOver", isGameOver)
 
         context.startActivity(intent)
-        if(!isGameOver){
+        /*if(!isGameOver){
             Toast.makeText(context, "You have aborted the ship!", Toast.LENGTH_SHORT).show()
-        }
+        }*/
     }
 
     // The SurfaceView class implements onTouchListener
