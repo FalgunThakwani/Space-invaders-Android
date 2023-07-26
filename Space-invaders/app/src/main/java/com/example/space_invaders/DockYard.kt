@@ -1,5 +1,6 @@
 package com.example.space_invaders
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -73,8 +74,12 @@ class DockYard : AppCompatActivity() {
         val editor = sharedPreferences.edit()
         editor.putInt("selectedImageResId", imageList[currentIndex])
         editor.apply()
-        val message = "Ship ${currentIndex + 1} selected"
 
+        // Create an explicit Intent to go back to the main activity
+        val intent = Intent(this, HomeActivity::class.java)
+        startActivity(intent)
+
+        val message = "Ship ${currentIndex + 1} selected"
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
