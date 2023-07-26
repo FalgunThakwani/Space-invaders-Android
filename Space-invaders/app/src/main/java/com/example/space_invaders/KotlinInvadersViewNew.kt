@@ -464,10 +464,10 @@ class KotlinInvadersViewNew(context: Context,
             tempBackgroundBitmap = BitmapFactory.decodeResource(context.resources,R.drawable.night_sky_stars)
             canvas.drawBitmap(Bitmap.createScaledBitmap(tempBackgroundBitmap,size.x.toInt(), size.y.toInt() , false),0f, 0f,paint)
 
-            // draw the pause button
+            // draw the exit button
             var tempSettingBitmap: Bitmap
-            tempSettingBitmap = BitmapFactory.decodeResource(context.resources,R.drawable.setting_logo_2)
-            canvas.drawBitmap(Bitmap.createScaledBitmap(tempSettingBitmap,size.x.toInt()/11, size.y.toInt()/22 , false), size.x - 100f , 0f,paint)
+            tempSettingBitmap = BitmapFactory.decodeResource(context.resources,R.drawable.exit)
+            canvas.drawBitmap(Bitmap.createScaledBitmap(tempSettingBitmap,size.x.toInt()/11, size.y.toInt()/22 , false), size.x - 120f , -10f,paint)
 
 
             // Choose the brush color for drawing
