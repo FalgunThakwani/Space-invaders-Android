@@ -21,7 +21,7 @@ class PlayerShip(context: Context,
         val sharedPreferences: SharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
 
         val selectedImageResId = sharedPreferences.getInt("selectedImageResId", -1)
-        print(selectedImageResId);
+
 
         // If there is a selected image resource ID, update the bitmap
         if (selectedImageResId != -1) {
