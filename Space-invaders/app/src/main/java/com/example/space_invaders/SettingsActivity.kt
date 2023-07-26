@@ -71,9 +71,10 @@ class SettingsActivity : AppCompatActivity() {
                 }
                 Toast.makeText(this, "New name saved: $inputName", Toast.LENGTH_SHORT).show()
             }
-            onBackPressed()
-//            val intent = intent.setClass(this, HomeActivity::class.java)
-//            startActivity(intent)
+            //onBackPressed()
+            val intent = intent.setClass(this, HomeActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 }

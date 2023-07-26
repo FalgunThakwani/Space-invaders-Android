@@ -19,10 +19,11 @@ class HomeActivity : AppCompatActivity() {
         val textViewHomeWelcome = findViewById<TextView>(R.id.textView_homeWelcome)
         val startButton = findViewById<Button>(R.id.button_startGame)
         val dockyardButton = findViewById<Button>(R.id.button_dockyard)
+        val tutorialButton = findViewById<Button>(R.id.button_tutorial)
         val settingsButton = findViewById<Button>(R.id.button_settings)
 
         // Retrieve the player's name
-        val playerName = getSharedPreferences(RegisterActivity.PREFS_FILENAME, Context.MODE_PRIVATE)
+        var playerName = getSharedPreferences(RegisterActivity.PREFS_FILENAME, Context.MODE_PRIVATE)
             .getString(RegisterActivity.PLAYER_NAME_KEY, "XYZ")
 
         // Update the TextView
@@ -34,9 +35,17 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // Navigate to DockYard when the "DOCKYARD" button is clicked
         dockyardButton.setOnClickListener {
             val intent = Intent(this, DockYard::class.java)
             startActivity(intent)
+        }
+
+        // Navigate to TutorialActivity when the "TUTORIAL" button is clicked
+        tutorialButton.setOnClickListener{
+            val intent = Intent(this, TutorialActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         // Navigate to SettingsActivity when the "SETTINGS" button is clicked

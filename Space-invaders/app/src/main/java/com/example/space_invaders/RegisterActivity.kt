@@ -43,7 +43,7 @@ class RegisterActivity : AppCompatActivity() {
             savePlayerName(playerName)
 
             // Navigate to HomeActivity
-            val intent = Intent(this, HomeActivity::class.java)
+            val intent = Intent(this, TutorialActivity::class.java)
             startActivity(intent)
             finish() // remove this activity from the stack
         }

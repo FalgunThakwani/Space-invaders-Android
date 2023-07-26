@@ -43,10 +43,10 @@ class GameOverActivity : AppCompatActivity() {
         if (isGameOver) {
             resumeButton.visibility = Button.INVISIBLE
         }
+
         // when the RESUME button is clicked
         resumeButton.setOnClickListener {
             val intent = Intent(this, KotlinInvadersActivity::class.java)
-            // TODO: resume the game
             startActivity(intent)
             finish()
         }
