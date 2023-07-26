@@ -40,12 +40,16 @@ class RegisterActivity : AppCompatActivity() {
         // Set an on-click listener to the save button
         savePlayerNameButton.setOnClickListener {
             val playerName = playerNameEditText.text.toString()
-            savePlayerName(playerName)
-
-            // Navigate to HomeActivity
-            val intent = Intent(this, TutorialActivity::class.java)
-            startActivity(intent)
-            finish() // remove this activity from the stack
+            if(validatePlayerName(playerName)){
+                savePlayerName(playerName)
+                // Navigate to HomeActivity
+                val intent = Intent(this, TutorialActivity::class.java)
+                startActivity(intent)
+                finish() // remove this activity from the stack
+            }else{
+                // Display an error message
+                playerNameEditText.error = "Invalid player name"
+            }
         }
     }
 
@@ -57,18 +61,11 @@ class RegisterActivity : AppCompatActivity() {
         // Get an instance of the SharedPreferences.Editor
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
 
-        // Validate the player's name
-        if(!validatePlayerName(name)) {
-            // Display an error message
-            playerNameEditText.error = "Invalid name"
-            return
-        }else{
-            // Store the player's name
-            editor.putString(PLAYER_NAME_KEY, name)
+        // Store the player's name
+        editor.putString(PLAYER_NAME_KEY, name)
 
-            // Commit the changes
-            editor.apply()
-        }
+        // Commit the changes
+        editor.apply()
     }
 
     /**

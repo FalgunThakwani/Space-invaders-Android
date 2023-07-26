@@ -63,6 +63,11 @@ class SettingsActivity : AppCompatActivity() {
         // set the listener for the back button
         backButton.setOnClickListener {
             val inputName = nameEditText.text.toString()
+            val regex = Regex("^[a-zA-Z][a-zA-Z0-9-_.]{1,10}[a-zA-Z0-9]$")
+            if(!regex.matches(inputName)){
+                nameEditText.error = "Invalid player name"
+                return@setOnClickListener
+            }
             // save the player name if changed
             if(!inputName.equals(playerName)){
                 with(this.getSharedPreferences(RegisterActivity.PREFS_FILENAME, Context.MODE_PRIVATE).edit()) {
