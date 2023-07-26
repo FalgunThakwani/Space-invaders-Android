@@ -53,10 +53,14 @@ class DockYard : AppCompatActivity() {
         if (index in 0 until imageList.size) {
             imageView.setImageResource(imageList[index])
             currentIndex = index
+
+            // Update the text of the select button
             if(selectedImageResId==imageList[index]){
                 btnSelect.text = "Selected";
+                btnSelect.isEnabled = false;
             }else{
                 btnSelect.text = "Select";
+                btnSelect.isEnabled = true;
             }
 
             btnLeft.visibility = if (currentIndex > 0) View.VISIBLE else View.INVISIBLE
