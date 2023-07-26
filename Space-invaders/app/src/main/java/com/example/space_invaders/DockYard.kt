@@ -4,10 +4,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 
 class DockYard : AppCompatActivity() {
@@ -46,6 +43,18 @@ class DockYard : AppCompatActivity() {
         btnSelect.setOnClickListener { selectImage() }
 
         displayImage(currentIndex)
+
+        val highScoreSharedPreferences = getSharedPreferences("Kotlin Invaders", Context.MODE_PRIVATE)
+        var highScore =  highScoreSharedPreferences.getInt("highScore", 0)
+        val playerBestScoreTextView = findViewById<TextView>(R.id.textView_playerBestScore)
+        playerBestScoreTextView.text = "Your Best Score: ${highScore}"
+
+        val backButton: Button = findViewById(R.id.button_dockyard_back)
+        backButton.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun displayImage(index: Int) {
@@ -61,6 +70,7 @@ class DockYard : AppCompatActivity() {
 
             // the first ship is free
             val requiredScore = index * 100
+
             if(highScore < requiredScore){
                 // lock the ship if the score is not enough
                 btnSelect.text = "Best Score ${requiredScore} To Unlock"
@@ -94,5 +104,10 @@ class DockYard : AppCompatActivity() {
         val message = "Ship ${currentIndex + 1} selected"
         btnSelect.text = "Selected";
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+
+        // Navigate to HomeActivity
+        val intent = Intent(this, HomeActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

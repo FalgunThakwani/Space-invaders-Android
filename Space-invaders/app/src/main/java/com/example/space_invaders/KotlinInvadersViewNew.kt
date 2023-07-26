@@ -14,6 +14,7 @@ import android.view.SurfaceView
 import android.util.Log
 import android.view.MotionEvent
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat
 
 
 class KotlinInvadersViewNew(context: Context,
@@ -427,21 +428,37 @@ class KotlinInvadersViewNew(context: Context,
                     // Change the player ship's image to the scaled explosion
                     playerShip.bitmap = scaledExplosionBitmap
 
-                    // Create a Handler to revert back to original image after 2 seconds
+
+                    // Create a Handler to revert back to the selected image after 2 seconds
                     val handler = Handler(Looper.getMainLooper())
                     handler.postDelayed({
-                        // Get the original image and scale it to the player ship size
-                        val originalBitmap = BitmapFactory.decodeResource(
-                            context.resources,
-                            R.drawable.playership)
-                        val scaledOriginalBitmap = Bitmap.createScaledBitmap(
-                            originalBitmap,
+                        // Get the selected image resource ID from SharedPreferences
+                        val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+                        val selectedImageResId = sharedPreferences.getInt("selectedImageResId", -1)
+
+                        // Load the appropriate bitmap based on the selectedImageResId
+                        val selectedImageBitmap = if (selectedImageResId != -1) {
+                            BitmapFactory.decodeResource(
+                                context.resources,
+                                selectedImageResId
+                            )
+                        } else {
+                            BitmapFactory.decodeResource(
+                                context.resources,
+                                R.drawable.playership
+                            )
+                        }
+
+                        // Scale the selected image bitmap to the player ship size
+                        val scaledSelectedBitmap = Bitmap.createScaledBitmap(
+                            selectedImageBitmap,
                             playerShip.width.toInt(),
                             playerShip.height.toInt(),
-                            false)
+                            false
+                        )
 
-                        // Revert back to the scaled original image
-                        playerShip.bitmap = scaledOriginalBitmap
+                        // Set the player ship's bitmap to the scaled selected image
+                        playerShip.bitmap = scaledSelectedBitmap
                     }, 2000) // Delay of 2 seconds (2000 milliseconds)
 
                     // get shared preferences
