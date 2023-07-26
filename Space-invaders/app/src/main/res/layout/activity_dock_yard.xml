@@ -19,16 +19,23 @@
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="24sp" android:textStyle="bold"/>
+
         <TextView
             android:id="@+id/textView_playerBestScore"
             android:layout_width="match_parent"
-            android:layout_height="150dp" android:text="TextView" android:textAlignment="center"
-            android:textColor="#FFFFFF" android:textSize="20sp"/>
+            android:layout_height="80dp"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
         <Button
             android:id="@+id/button_dockyard_back"
             android:layout_width="125dp"
-            android:layout_height="50dp" android:layout_marginLeft="143dp"
-            android:text="BACK" android:textAlignment="center"/>
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="143dp"
+            android:text="BACK"
+            android:textAlignment="center" />
     </LinearLayout>
 
     <LinearLayout
