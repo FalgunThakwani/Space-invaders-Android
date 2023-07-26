@@ -74,7 +74,7 @@ class DockYard : AppCompatActivity() {
         editor.putInt("selectedImageResId", imageList[currentIndex])
         editor.apply()
         val message = "Ship ${currentIndex + 1} selected"
-
+        btnSelect.text = "Selected";
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
