@@ -17,17 +17,20 @@ class PlayerShip(context: Context,
 ///Update Code
     var bitmap: Bitmap
     init{
-
+        print("inint")
         val sharedPreferences: SharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+
         val selectedImageResId = sharedPreferences.getInt("selectedImageResId", -1)
 
+
         // If there is a selected image resource ID, update the bitmap
-        bitmap = if (selectedImageResId != null || selectedImageResId != -1) {
-            BitmapFactory.decodeResource(
+        if (selectedImageResId != -1) {
+            bitmap =  BitmapFactory.decodeResource(
                 context.resources,
                 selectedImageResId)
         }else{
-            BitmapFactory.decodeResource(
+            print("Inside");
+            bitmap =  BitmapFactory.decodeResource(
                 context.resources,
                 R.drawable.playership)
         }
