@@ -51,17 +51,8 @@ class InvadersView(context: Context,
     // much faster and half the length
     // compared to invader's bullet
     private val bulletFrame1 = BitmapFactory.decodeResource(context.resources, R.drawable.bullet_frame1_reduced)
-//    private val bulletFrame2 = BitmapFactory.decodeResource(context.resources, R.drawable.bullet_frame2)
-//    private val bulletFrame3 = BitmapFactory.decodeResource(context.resources, R.drawable.bullet_frame3)
-//    private val bulletFrame4 = BitmapFactory.decodeResource(context.resources, R.drawable.bullet_frame4)
-//    private val bulletFrame5 = BitmapFactory.decodeResource(context.resources, R.drawable.bullet_frame5)
-//    private val bulletFrame6 = BitmapFactory.decodeResource(context.resources, R.drawable.bullet_frame6)
-    private val bulletFrames = listOf(bulletFrame1)
-    private var playerBullet = PlayerBullet(size.y, 1000f, 40f,bulletFrame1)
 
-    private var bulletAnimationTime = 0L
-    private var bulletFrameIndex = 0
-    private val frameDuration = 100
+    private var playerBullet = PlayerBullet(size.y, 1000f, 40f,bulletFrame1)
 
     // The invaders bullets
     private val invadersInvaderBullets = ArrayList<InvaderBullet>()
@@ -104,17 +95,6 @@ class InvadersView(context: Context,
         // Build an army of invaders
         Invader.numberOfInvaders = 0
         numInvaders = 0
-//        for (column in 0..10) {
-//            for (row in 0..5) {
-//                invaders.add(Invader(context,
-//                        row,
-//                        column,
-//                        size.x,
-//                        size.y))
-//
-//                numInvaders++
-//            }
-//        }
 
         for (column in 0..6) {
             for (row in 0..3) {
@@ -130,19 +110,6 @@ class InvadersView(context: Context,
 
         // Build the shelters
         numBricks = 0
-//        for (shelterNumber in 0..4) {
-//            for (column in 0..18) {
-//                for (row in 0..8) {
-//                    bricks.add(DefenceBrick(row,
-//                            column,
-//                            shelterNumber,
-//                            size.x,
-//                            size.y))
-//
-//                    numBricks++
-//                }
-//            }
-//        }
 
         for (shelterNumber in 0..4) {
             for (column in 0..5) {
@@ -510,12 +477,6 @@ class InvadersView(context: Context,
             // Draw the background color
             canvas.drawColor(Color.argb(255, 0, 0, 0))
 
-            var tempBackgroundBitmap: Bitmap
-
-//            tempBackgroundBitmap = BitmapFactory.decodeResource(context.resources,R.drawable.stars_background_low)
-//            tempBackgroundBitmap = BitmapFactory.decodeResource(context.resources,R.drawable.night_sky_stars)
-//            canvas.drawBitmap(Bitmap.createScaledBitmap(tempBackgroundBitmap,size.x.toInt(), size.y.toInt() , false),0f, 0f,paint)
-
             // draw the exit button
             var tempSettingBitmap: Bitmap
             tempSettingBitmap = BitmapFactory.decodeResource(context.resources,R.drawable.exit)
@@ -630,9 +591,6 @@ class InvadersView(context: Context,
         intent.putExtra("isGameOver", isGameOver)
 
         context.startActivity(intent)
-        /*if(!isGameOver){
-            Toast.makeText(context, "You have aborted the ship!", Toast.LENGTH_SHORT).show()
-        }*/
     }
 
     // The SurfaceView class implements onTouchListener
@@ -673,8 +631,6 @@ class InvadersView(context: Context,
                 }
             }
 
-
-
         // Player has removed finger from screen
             MotionEvent.ACTION_POINTER_UP,
             MotionEvent.ACTION_UP -> {
@@ -682,8 +638,8 @@ class InvadersView(context: Context,
                     playerShip.moving = PlayerShip.stopped
                 }
             }
-
         }
+
         val settingArea = size.y / 8
         when (motionEvent.action) {
 
@@ -700,12 +656,6 @@ class InvadersView(context: Context,
                         // abort the ship
                         gameOver(false)
                     }
-                    else {
-                        print("2222222222222222222222")
-                    }
-                }
-                else {
-                    print("333333333333333333333333")
                 }
             }
 
@@ -716,7 +666,6 @@ class InvadersView(context: Context,
                     playerShip.moving = PlayerShip.stopped
                 }
             }
-
         }
         return true
     }

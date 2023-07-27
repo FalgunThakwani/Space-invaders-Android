@@ -9,7 +9,7 @@ class InvadersActivity : Activity() {
     // kotlinInvadersView will be the view of the game
     // It will also hold the logic of the game
     // and respond to screen touches as well
-    //private var kotlinInvadersView: KotlinInvadersView? = null
+    // private var kotlinInvadersView: KotlinInvadersView? = null
     private var invadersView: InvadersView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,22 +17,14 @@ class InvadersActivity : Activity() {
 
         // Get a Display object to access screen details
         val display = windowManager.defaultDisplay
+
         // Load the resolution into a Point object
         val size = Point()
         display.getSize(size)
 
         // Initialize gameView and set it as the view
-//        kotlinInvadersView = KotlinInvadersView(this, size)
-//        setContentView(kotlinInvadersView)
         invadersView = InvadersView(this, size)
         setContentView(invadersView)
-
-//        setContentView(R.layout.activity_background)
-
-//        kotlinInvadersView = KotlinInvadersView(this, size)
-//        setContentView(kotlinInvadersView)
-//>>>>>>> 00f560ebcc06d5c5b30107993893e10277a57200
-
     }
 
     // This method executes when the player starts the game
