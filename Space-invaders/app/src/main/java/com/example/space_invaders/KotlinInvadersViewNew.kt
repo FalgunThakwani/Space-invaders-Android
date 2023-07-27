@@ -445,7 +445,7 @@ class KotlinInvadersViewNew(context: Context,
                         } else {
                             BitmapFactory.decodeResource(
                                 context.resources,
-                                R.drawable.playership
+                                R.drawable.spaceship1
                             )
                         }
 
