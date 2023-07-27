@@ -3,6 +3,7 @@ package com.example.space_invaders
 import android.app.Activity
 import android.graphics.Point
 import android.os.Bundle
+import com.example.space_invaders.viewmodel.InvadersView
 
 class InvadersActivity : Activity() {
 

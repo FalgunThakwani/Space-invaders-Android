@@ -1,5 +1,7 @@
 package com.example.space_invaders
 
+import com.example.space_invaders.model.Bullet
+
 /**
  * Class for InvaderBullet
  * @param screenY The vertical resolution of the screen

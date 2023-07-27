@@ -1,6 +1,7 @@
 package com.example.space_invaders
 
 import android.graphics.Bitmap
+import com.example.space_invaders.model.Bullet
 
 class PlayerBullet(
     screenY: Int,
