@@ -8,52 +8,58 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 
+// Class for the HomeActivity where players start or navigate to different sections of the game
 class HomeActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        getSupportActionBar()?.hide()
         super.onCreate(savedInstanceState)
-        // Force Night Mode
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         setContentView(R.layout.activity_home)
 
-        val textViewHomeWelcome = findViewById<TextView>(R.id.textView_homeWelcome)
-        val startButton = findViewById<Button>(R.id.button_startGame)
+        // Hide the action bar
+        getSupportActionBar()?.hide()
+
+        // Force Night Mode
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+
+        // Bind UI elements to variables
+        val welcomeTextView = findViewById<TextView>(R.id.textView_homeWelcome)
+        val startGameButton = findViewById<Button>(R.id.button_startGame)
         val dockyardButton = findViewById<Button>(R.id.button_dockyard)
         val tutorialButton = findViewById<Button>(R.id.button_tutorial)
         val settingsButton = findViewById<Button>(R.id.button_settings)
 
-        // Retrieve the player's name
-        var playerName = getSharedPreferences(RegisterActivity.PREFS_FILENAME, Context.MODE_PRIVATE)
-            .getString(RegisterActivity.PLAYER_NAME_KEY, "XYZ")
+        // Retrieve the player's name from shared preferences
+        val playerNamePreferences = getSharedPreferences(RegisterActivity.PREFS_FILENAME, Context.MODE_PRIVATE)
+        val playerName = playerNamePreferences.getString(RegisterActivity.PLAYER_NAME_KEY, "XYZ")
 
-        // Update the TextView
-        textViewHomeWelcome.text = "Welcome, Captain $playerName"
+        // Update the welcome text view with player's name
+        welcomeTextView.text = "Welcome, Captain $playerName"
 
-        // Navigate to KotlinInvadersActivity when the "START" button is clicked
-        startButton.setOnClickListener {
-            val intent = Intent(this, InvadersActivity::class.java)
-            startActivity(intent)
+        // Navigate to InvadersActivity when the "START" button is clicked
+        startGameButton.setOnClickListener {
+            val invadersIntent = Intent(this, InvadersActivity::class.java)
+            startActivity(invadersIntent)
             finish()
         }
 
         // Navigate to DockYard when the "DOCKYARD" button is clicked
         dockyardButton.setOnClickListener {
-            val intent = Intent(this, DockYard::class.java)
-            startActivity(intent)
+            val dockYardIntent = Intent(this, DockYard::class.java)
+            startActivity(dockYardIntent)
             finish()
         }
 
         // Navigate to TutorialActivity when the "TUTORIAL" button is clicked
         tutorialButton.setOnClickListener{
-            val intent = Intent(this, TutorialActivity::class.java)
-            startActivity(intent)
+            val tutorialIntent = Intent(this, TutorialActivity::class.java)
+            startActivity(tutorialIntent)
             finish()
         }
 
         // Navigate to SettingsActivity when the "SETTINGS" button is clicked
         settingsButton.setOnClickListener {
-            val intent = Intent(this, SettingsActivity::class.java)
-            startActivity(intent)
+            val settingsIntent = Intent(this, SettingsActivity::class.java)
+            startActivity(settingsIntent)
             finish()
         }
     }
