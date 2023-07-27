@@ -13,8 +13,8 @@ import android.preference.PreferenceManager
 import android.view.SurfaceView
 import android.util.Log
 import android.view.MotionEvent
-import com.example.space_invaders.InvaderBullet
-import com.example.space_invaders.PlayerBullet
+import com.example.space_invaders.model.InvaderBullet
+import com.example.space_invaders.model.PlayerBullet
 import com.example.space_invaders.R
 import com.example.space_invaders.model.DefenceBrick
 import com.example.space_invaders.model.Invader

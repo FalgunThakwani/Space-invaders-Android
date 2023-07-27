@@ -1,4 +1,4 @@
-package com.example.space_invaders
+package com.example.space_invaders.model
 
 import com.example.space_invaders.model.Bullet
 

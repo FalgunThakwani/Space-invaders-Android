@@ -1,9 +1,10 @@
+package com.example.space_invaders.model
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.space_invaders.ImageItem
 import com.example.space_invaders.R
 
 // Class for adapter to bind image data to RecyclerView items

@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
-import com.example.space_invaders.InvadersActivity
 import com.example.space_invaders.R
 
 // Class for the GameOverActivity where players view game stats and decide next steps

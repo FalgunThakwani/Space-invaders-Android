@@ -1,4 +1,4 @@
-package com.example.space_invaders
+package com.example.space_invaders.view
 
 import android.app.Activity
 import android.graphics.Point

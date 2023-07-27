@@ -1,13 +1,12 @@
-package com.example.space_invaders
+package com.example.space_invaders.view
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.example.space_invaders.view.HomeActivity
+import com.example.space_invaders.R
 
 // Class for DockYard activity where players can choose their spaceship
 class DockYard : AppCompatActivity() {

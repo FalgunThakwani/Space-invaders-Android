@@ -15,21 +15,21 @@
         android:theme="@style/Theme.Spaceinvaders"
         tools:targetApi="31">
         <activity
-            android:name=".TutorialActivity"
+            android:name=".view.TutorialActivity"
             android:exported="true"/>
         <activity
-            android:name=".GameOverActivity"
+            android:name=".view.GameOverActivity"
             android:exported="true"/>
         <activity
-            android:name=".DockYard"
+            android:name=".view.DockYard"
             android:exported="false"/>
         <activity
-            android:name=".InvadersActivity"
+            android:name=".view.InvadersActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".view.WelcomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -38,13 +38,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HomeActivity"
+            android:name=".view.HomeActivity"
             android:exported="true"/>
         <activity
-            android:name=".RegisterActivity"
+            android:name=".view.RegisterActivity"
             android:exported="true"/>
         <activity
-            android:name=".SettingsActivity"
+            android:name=".view.SettingsActivity"
             android:exported="true"/>
     </application>
 
