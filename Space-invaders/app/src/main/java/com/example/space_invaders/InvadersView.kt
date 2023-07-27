@@ -13,12 +13,10 @@ import android.preference.PreferenceManager
 import android.view.SurfaceView
 import android.util.Log
 import android.view.MotionEvent
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat
 
 
-class KotlinInvadersViewNew(context: Context,
-                            private val size: Point)
+class InvadersView(context: Context,
+                   private val size: Point)
     : SurfaceView(context),
         Runnable {
 
@@ -59,14 +57,14 @@ class KotlinInvadersViewNew(context: Context,
 //    private val bulletFrame5 = BitmapFactory.decodeResource(context.resources, R.drawable.bullet_frame5)
 //    private val bulletFrame6 = BitmapFactory.decodeResource(context.resources, R.drawable.bullet_frame6)
     private val bulletFrames = listOf(bulletFrame1)
-    private var playerBullet = BulletNew(size.y, 1000f, 40f,bulletFrame1)
+    private var playerBullet = PlayerBullet(size.y, 1000f, 40f,bulletFrame1)
 
     private var bulletAnimationTime = 0L
     private var bulletFrameIndex = 0
     private val frameDuration = 100
 
     // The invaders bullets
-    private val invadersBullets = ArrayList<Bullet>()
+    private val invadersInvaderBullets = ArrayList<InvaderBullet>()
     private var nextBullet = 0
     private val maxInvaderBullets = 10
 
@@ -162,7 +160,7 @@ class KotlinInvadersViewNew(context: Context,
 
         // Initialize the invadersBullets array
         for (i in 0 until maxInvaderBullets) {
-            invadersBullets.add(Bullet(size.y))
+            invadersInvaderBullets.add(InvaderBullet(size.y))
         }
     }
 
@@ -241,7 +239,7 @@ class KotlinInvadersViewNew(context: Context,
                                 waves)) {
 
                     // If so try and spawn a bullet
-                    if (invadersBullets[nextBullet].shoot(invader.position.left
+                    if (invadersInvaderBullets[nextBullet].shoot(invader.position.left
                                     + invader.width / 2,
                                     invader.position.top, playerBullet.down)) {
 
@@ -278,7 +276,7 @@ class KotlinInvadersViewNew(context: Context,
 
         // Update all the invaders bullets if active
 
-        for (bullet in invadersBullets) {
+        for (bullet in invadersInvaderBullets) {
             if (bullet.isActive) {
                 bullet.update(fps)
             }
@@ -303,7 +301,7 @@ class KotlinInvadersViewNew(context: Context,
         }
 
         // Has an invaders playerBullet hit the bottom of the screen
-        for (bullet in invadersBullets) {
+        for (bullet in invadersInvaderBullets) {
             if (bullet.position.top > size.y) {
                 bullet.isActive = false
             }
@@ -349,7 +347,7 @@ class KotlinInvadersViewNew(context: Context,
                             lives++
                             invaders.clear()
                             bricks.clear()
-                            invadersBullets.clear()
+                            invadersInvaderBullets.clear()
                             prepareLevel()
                             waves++
                             break
@@ -363,7 +361,7 @@ class KotlinInvadersViewNew(context: Context,
         }
 
         // Has an alien playerBullet hit a shelter brick
-        for (bullet in invadersBullets) {
+        for (bullet in invadersInvaderBullets) {
             if (bullet.isActive) {
                 for (brick in bricks) {
                     if (brick.isVisible) {
@@ -409,7 +407,7 @@ class KotlinInvadersViewNew(context: Context,
         }
 
         // Has an invader playerBullet hit the player ship
-        for (bullet in invadersBullets) {
+        for (bullet in invadersInvaderBullets) {
             if (bullet.isActive) {
                 if (RectF.intersects(playerShip.position, bullet.position)) {
                     bullet.isActive = false
@@ -498,7 +496,7 @@ class KotlinInvadersViewNew(context: Context,
             waves = 1*/
             invaders.clear()
             bricks.clear()
-            invadersBullets.clear()
+            invadersInvaderBullets.clear()
             prepareLevel()
         }
     }
@@ -564,7 +562,7 @@ class KotlinInvadersViewNew(context: Context,
             }
 
             // Draw the invaders bullets
-            for (bullet in invadersBullets) {
+            for (bullet in invadersInvaderBullets) {
                 if (bullet.isActive) {
                     canvas.drawRect(bullet.position, paint)
                 }

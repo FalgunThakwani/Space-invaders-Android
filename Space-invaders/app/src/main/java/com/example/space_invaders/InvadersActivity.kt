@@ -1,17 +1,16 @@
 package com.example.space_invaders
 
 import android.app.Activity
-import android.content.Intent
 import android.graphics.Point
 import android.os.Bundle
 
-class KotlinInvadersActivity : Activity() {
+class InvadersActivity : Activity() {
 
     // kotlinInvadersView will be the view of the game
     // It will also hold the logic of the game
     // and respond to screen touches as well
     //private var kotlinInvadersView: KotlinInvadersView? = null
-    private var kotlinInvadersViewNew: KotlinInvadersViewNew? = null
+    private var invadersView: InvadersView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,8 +24,8 @@ class KotlinInvadersActivity : Activity() {
         // Initialize gameView and set it as the view
 //        kotlinInvadersView = KotlinInvadersView(this, size)
 //        setContentView(kotlinInvadersView)
-        kotlinInvadersViewNew = KotlinInvadersViewNew(this, size)
-        setContentView(kotlinInvadersViewNew)
+        invadersView = InvadersView(this, size)
+        setContentView(invadersView)
 
 //        setContentView(R.layout.activity_background)
 
@@ -41,7 +40,7 @@ class KotlinInvadersActivity : Activity() {
         super.onResume()
 
         // Tell the gameView resume method to execute
-        kotlinInvadersViewNew?.resume()
+        invadersView?.resume()
     }
 
     // This method executes when the player quits the game
@@ -49,6 +48,6 @@ class KotlinInvadersActivity : Activity() {
         super.onPause()
 
         // Tell the gameView pause method to execute
-        kotlinInvadersViewNew?.pause()
+        invadersView?.pause()
     }
 }

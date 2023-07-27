@@ -46,7 +46,7 @@ class GameOverActivity : AppCompatActivity() {
 
         // when the RESTART button is clicked
         restartButton.setOnClickListener {
-            val intent = Intent(this, KotlinInvadersActivity::class.java)
+            val intent = Intent(this, InvadersActivity::class.java)
             startActivity(intent)
             finish()
         }

@@ -24,7 +24,7 @@
             android:name=".DockYard"
             android:exported="false"/>
         <activity
-            android:name=".KotlinInvadersActivity"
+            android:name=".InvadersActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>

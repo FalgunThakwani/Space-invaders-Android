@@ -2,9 +2,9 @@ package com.example.space_invaders
 
 import android.graphics.RectF
 
-class Bullet(screenY: Int,
-             private val speed: Float = 350f,
-             heightModifier: Float = 20f) {
+class InvaderBullet(screenY: Int,
+                    private val speed: Float = 350f,
+                    heightModifier: Float = 20f) {
 
     val position = RectF()
 

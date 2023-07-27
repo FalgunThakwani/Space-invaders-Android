@@ -3,10 +3,10 @@ package com.example.space_invaders
 import android.graphics.Bitmap
 import android.graphics.RectF
 
-class BulletNew(screenY: Int,
-                private val speed: Float = 350f,
-                heightModifier: Float = 20f,
-                private val bulletBitmap: Bitmap // Single bitmap for bullet animation
+class PlayerBullet(screenY: Int,
+                   private val speed: Float = 350f,
+                   heightModifier: Float = 20f,
+                   private val bulletBitmap: Bitmap // Single bitmap for bullet animation
 ) {
 
     val position = RectF()

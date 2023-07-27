@@ -31,7 +31,7 @@ class HomeActivity : AppCompatActivity() {
 
         // Navigate to KotlinInvadersActivity when the "START" button is clicked
         startButton.setOnClickListener {
-            val intent = Intent(this, KotlinInvadersActivity::class.java)
+            val intent = Intent(this, InvadersActivity::class.java)
             startActivity(intent)
             finish()
         }
