@@ -72,7 +72,7 @@ class RegisterActivity : AppCompatActivity() {
      * Validates the player's name.
      * @param name The player's name.
      */
-    fun validatePlayerName(name: String): Boolean {
+    private fun validatePlayerName(name: String): Boolean {
         // 3-12 characters
         // allowed special characters: - _ .
         // first character must be a letter

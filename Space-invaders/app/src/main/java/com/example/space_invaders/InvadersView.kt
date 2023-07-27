@@ -595,79 +595,98 @@ class InvadersView(context: Context,
 
     // The SurfaceView class implements onTouchListener
     // So we can override this method and detect screen touches.
+
+    /**
+     * This method is called when the player touches the screen
+     * @param motionEvent The motion event that was detected
+     * @return true if the event was handled
+     */
     override fun onTouchEvent(motionEvent: MotionEvent): Boolean {
-        val motionArea = size.y - (size.y / 8)
+        // Get the general position of the touch
+        val gamePlayAreaThreshold = size.y - (size.y / 8)
+        val settingsAreaThreshold = size.y / 8
+
         when (motionEvent.action and MotionEvent.ACTION_MASK) {
-
-        // Player has touched the screen
-        // Or moved their finger while touching screen
-            MotionEvent.ACTION_POINTER_DOWN,
-            MotionEvent.ACTION_DOWN,
-            MotionEvent.ACTION_MOVE-> {
-                paused = false
-
-                if (motionEvent.y > motionArea) {
-                    if (motionEvent.x > size.x / 2) {
-                        playerShip.moving = PlayerShip.right
-                    } else {
-                        playerShip.moving = PlayerShip.left
-                    }
-
-                }
-
-                if (motionEvent.y < motionArea) {
-                    // Shots fired
-                    if (playerBullet.shoot(
-                                    playerShip.position.left + playerShip.width / 2f,
-                                    playerShip.position.top,
-                                    playerBullet.up)) {
-
-                        // Play sound if enabled
-                        val soundEnabled = sharedPreferences.getBoolean("SOUND_ENABLED", true)
-                        if (soundEnabled) {
-                            soundPlayer.playSound(SoundPlayer.damageShelterID)
-                        }
-                    }
-                }
-            }
-
-        // Player has removed finger from screen
-            MotionEvent.ACTION_POINTER_UP,
-            MotionEvent.ACTION_UP -> {
-                if (motionEvent.y > motionArea) {
-                    playerShip.moving = PlayerShip.stopped
-                }
-            }
-        }
-
-        val settingArea = size.y / 8
-        when (motionEvent.action) {
-
             // Player has touched the screen
             // Or moved their finger while touching screen
             MotionEvent.ACTION_POINTER_DOWN,
             MotionEvent.ACTION_DOWN,
-            MotionEvent.ACTION_MOVE,
-            MotionEvent.ACTION_BUTTON_PRESS-> {
-                paused = false
-
-                if (motionEvent.y < settingArea) {
-                    if (motionEvent.x > size.x - 100) {
-                        // abort the ship
-                        gameOver(false)
-                    }
-                }
-            }
+            MotionEvent.ACTION_MOVE -> handleMotionEvent(motionEvent, gamePlayAreaThreshold, settingsAreaThreshold)
 
             // Player has removed finger from screen
             MotionEvent.ACTION_POINTER_UP,
-            MotionEvent.ACTION_UP -> {
-                if (motionEvent.y > motionArea) {
-                    playerShip.moving = PlayerShip.stopped
-                }
-            }
+            MotionEvent.ACTION_UP -> handleMotionEventUp(motionEvent, gamePlayAreaThreshold)
         }
         return true
     }
 
+    /**
+     * This method handles the motion event when the player touches the screen
+     */
+    private fun handleMotionEvent(
+        motionEvent: MotionEvent,
+        gamePlayAreaThreshold: Int,
+        settingsAreaThreshold: Int
+    ) {
+        paused = false
+
+        when {
+            // Player has touched the game play area to move the ship
+            motionEvent.y > gamePlayAreaThreshold -> handleGamePlayAreaMotion(motionEvent)
+            // Player has touched the settings area to exit the game
+            motionEvent.y < settingsAreaThreshold -> handleSettingsAreaMotion(motionEvent)
+            // Player has touched the game play area to shoot
+            else -> handleShootingMotion()
+        }
+    }
+
+    /**
+     * This method handles the motion event when the player removes their finger from the screen
+     * @param motionEvent The motion event that was detected
+     * @param gamePlayAreaThreshold The threshold for the game play area
+     */
+    private fun handleMotionEventUp(motionEvent: MotionEvent, gamePlayAreaThreshold: Int) {
+        if (motionEvent.y > gamePlayAreaThreshold) {
+            playerShip.moving = PlayerShip.stopped
+        }
+    }
+
+    /**
+     * This method handles the motion event when the player touches the game play area
+     * @param motionEvent The motion event that was detected
+     */
+    private fun handleGamePlayAreaMotion(motionEvent: MotionEvent) {
+        playerShip.moving = if (motionEvent.x > size.x / 2) PlayerShip.right else PlayerShip.left
+    }
+
+    /**
+     * This method handles the motion event when the player touches the settings area
+     * @param motionEvent The motion event that was detected
+     */
+    private fun handleSettingsAreaMotion(motionEvent: MotionEvent) {
+        if (motionEvent.x > size.x - 100) {
+            // abort the ship
+            gameOver(false)
+        }
+    }
+
+    /**
+     * This method handles the motion event when the player touches the game play area to shoot
+     * @param motionEvent The motion event that was detected
+     */
+    private fun handleShootingMotion() {
+        // Shots fired
+        if (playerBullet.shoot(
+                playerShip.position.left + playerShip.width / 2f,
+                playerShip.position.top,
+                playerBullet.up
+            )
+        ) {
+            // Play sound if enabled
+            val soundEnabled = sharedPreferences.getBoolean("SOUND_ENABLED", true)
+            if (soundEnabled) {
+                soundPlayer.playSound(SoundPlayer.damageShelterID)
+            }
+        }
+    }
 }
