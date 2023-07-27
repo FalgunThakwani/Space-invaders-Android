@@ -15,7 +15,6 @@ class DockYard : AppCompatActivity() {
     private lateinit var btnSelect: Button
 
     private val imageList = listOf(
-        R.drawable.playership, // Add more image resource IDs as needed
         R.drawable.spaceship1,
         R.drawable.spaceship2,
         R.drawable.spaceship4,

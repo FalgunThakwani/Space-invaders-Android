@@ -32,7 +32,7 @@ class PlayerShip(context: Context,
             print("Inside");
             bitmap =  BitmapFactory.decodeResource(
                 context.resources,
-                R.drawable.playership)
+                R.drawable.spaceship1)
         }
 
 //        bitmap =
