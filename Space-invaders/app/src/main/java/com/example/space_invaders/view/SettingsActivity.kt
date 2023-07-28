@@ -37,7 +37,7 @@ class SettingsActivity : AppCompatActivity() {
         // Set the switch state based on the value stored in shared preferences
         switchHapticInvader.isChecked = sharedPreferences.getBoolean("HAPTIC_FEEDBACK_INVADER", true)
         switchHapticPlayer.isChecked = sharedPreferences.getBoolean("HAPTIC_FEEDBACK_PLAYER", true)
-        switchSoundInGame.isChecked = sharedPreferences.getBoolean("SOUND_INGAME", true)  // In-Game Sounds preference
+        switchSoundInGame.isChecked = sharedPreferences.getBoolean("SOUND_ENABLED", true)  // In-Game Sounds preference
 
         // Set listeners for the switches
         switchHapticInvader.setOnCheckedChangeListener { _, isChecked ->
@@ -57,7 +57,7 @@ class SettingsActivity : AppCompatActivity() {
         // Listener for the In-Game Sounds switch
         switchSoundInGame.setOnCheckedChangeListener { _, isChecked ->
             with(sharedPreferences.edit()) {
-                putBoolean("SOUND_INGAME", isChecked)
+                putBoolean("SOUND_ENABLED", isChecked)
                 apply()
             }
         }

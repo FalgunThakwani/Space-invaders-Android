@@ -95,7 +95,7 @@ class InvadersView(context: Context,
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
     // Get user's preference for sound
-    val soundEnabled = sharedPreferences.getBoolean("SOUND_INGAME", true)
+    val soundEnabled = sharedPreferences.getBoolean("SOUND_ENABLED", true)
 
     private fun prepareLevel() {
         // Here we will initialize the game objects
@@ -303,7 +303,6 @@ class InvadersView(context: Context,
                             }
                         }
                         // Play sound if enabled
-                        val soundEnabled = sharedPreferences.getBoolean("SOUND_ENABLED", true)
                         if (soundEnabled) {
                             soundPlayer.playSound(SoundPlayer.invaderExplodeID)
                         }
@@ -348,7 +347,6 @@ class InvadersView(context: Context,
                             val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
                             // Play sound if enabled
-                            val soundEnabled = sharedPreferences.getBoolean("SOUND_ENABLED", true)
                             if (soundEnabled) {
                                 soundPlayer.playSound(SoundPlayer.damageShelterID)
                             }
@@ -371,7 +369,6 @@ class InvadersView(context: Context,
                         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
                         // Play sound if enabled
-                        val soundEnabled = sharedPreferences.getBoolean("SOUND_ENABLED", true)
                         if (soundEnabled) {
                             soundPlayer.playSound(SoundPlayer.damageShelterID)
                         }
@@ -448,7 +445,6 @@ class InvadersView(context: Context,
                         }
                     }
                     // Play sound if enabled
-                    val soundEnabled = sharedPreferences.getBoolean("SOUND_ENABLED", true)
                     if (soundEnabled) {
                         soundPlayer.playSound(SoundPlayer.playerExplodeID)
                     }
@@ -690,7 +686,6 @@ class InvadersView(context: Context,
             )
         ) {
             // Play sound if enabled
-            val soundEnabled = sharedPreferences.getBoolean("SOUND_ENABLED", true)
             if (soundEnabled) {
                 soundPlayer.playSound(SoundPlayer.damageShelterID)
             }
