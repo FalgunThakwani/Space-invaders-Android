@@ -3,6 +3,14 @@ package com.example.space_invaders.model
 import android.graphics.Bitmap
 import com.example.space_invaders.model.Bullet
 
+/**
+ * Class for PlayerBullet
+ * @param screenY The vertical resolution of the screen
+ * @param speed The speed of the bullet
+ * @param heightModifier The height modifier of the bullet
+ * @param bulletBitmap The bitmap of the bullet
+ * @constructor Create empty Player bullet
+ */
 class PlayerBullet(
     screenY: Int,
     speed: Float = 350f,
