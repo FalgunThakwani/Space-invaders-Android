@@ -7,18 +7,24 @@ import java.util.*
 import android.graphics.BitmapFactory
 import com.example.space_invaders.R
 
+/**
+ * An invader
+ * @param context The context
+ * @param row The row of the invader
+ * @param column The column of the invader
+ * @param screenX The screen (canvas) width
+ * @param screenY The screen (canvas) height
+ * @constructor Create empty Invader
+ */
 class Invader(context: Context, row: Int, column: Int, screenX: Int, screenY: Int) {
     // How wide, high and spaced out are the invader will be
-//    var width = screenX / 35f
     var width = screenX / 17f
 
     private var height = screenY / 35f
-//    private val padding = screenX / 45
     private val padding = screenX / 25
 
     var position = RectF(
             column * (width + padding),
-//        100 + row * (width + padding / 4),
         100 + row * (width + padding),
             column * (width + padding) + width,
             100 + row * (width + padding / 4) + height
@@ -35,6 +41,10 @@ class Invader(context: Context, row: Int, column: Int, screenX: Int, screenY: In
 
     var isVisible = true
 
+    /**
+     * bitmap1 and bitmap2 will hold the two images for the invader
+     * This will alternate every time an invader is created
+     */
     companion object {
         // The alien ship will be represented by a Bitmap
         lateinit var bitmap1: Bitmap
@@ -45,6 +55,9 @@ class Invader(context: Context, row: Int, column: Int, screenX: Int, screenY: In
         var numberOfInvaders = 0
     }
 
+    /**
+     * Initialize the bitmaps
+     */
     init {
         // Initialize the bitmaps
         bitmap1 = BitmapFactory.decodeResource(
@@ -73,36 +86,41 @@ class Invader(context: Context, row: Int, column: Int, screenX: Int, screenY: In
         numberOfInvaders ++
     }
 
+    /**
+     * Update the invaders position
+     * @param fps
+     */
     fun update(fps: Long) {
         if (shipMoving == left) {
             position.left -= speed / fps
         }
-
         if (shipMoving == right) {
             position.left += speed / fps
         }
-
         position.right = position.left + width
     }
 
+    /**
+     * Drop the ship down the screen and reverse the direction
+     */
     fun dropDownAndReverse(waveNumber: Int) {
         shipMoving = if (shipMoving == left) {
             right
         } else {
             left
         }
-
         position.top += height
         position.bottom += height
-
-        // The later the wave, the more the invader speeds up
-//        speed *=  (1.1f + (waveNumber.toFloat() / 20))
     }
 
-    fun takeAim(playerShipX: Float,
-                playerShipLength: Float,
-                waves: Int)
-            : Boolean {
+    /**
+     * Aim a shot at the player
+     * @param playerShipX The player's ship horizontal coordinate
+     * @param playerShipLength The player's ship length
+     * @param waves The current wave
+     * @return True if the player's ship is hit
+     */
+    fun takeAim(playerShipX: Float, playerShipLength: Float, waves: Int) : Boolean {
 
         val generator = Random()
         var randomNumber: Int
@@ -118,12 +136,10 @@ class Invader(context: Context, row: Int, column: Int, screenX: Int, screenY: In
             if (randomNumber == 0) {
                 return true
             }
-
         }
 
         // If firing randomly (not near the player)
         randomNumber = generator.nextInt(150 * numberOfInvaders)
         return randomNumber == 0
-
     }
 }

@@ -9,6 +9,10 @@ import com.example.space_invaders.R
 
 /**
  * PlayerShip represents the player's spaceship in the game.
+ * @param context The context
+ * @param screenX The screen (canvas) width
+ * @param screenY The screen (canvas) height
+ * @constructor Create empty Player ship
  */
 class PlayerShip(
     context: Context,
@@ -39,8 +43,6 @@ class PlayerShip(
         bitmap = Bitmap.createScaledBitmap(bitmap, width.toInt(), height.toInt(), false)
     }
 
-
-
     // This keeps track of where the ship is
     val position = RectF(
         screenX / 2f,
@@ -52,7 +54,9 @@ class PlayerShip(
     // This will hold the pixels per second speed that the ship will move
     private val speed = 450f
 
-    // This data is accessible using ClassName.propertyName
+    /**
+     * Accessible data using ClassName.propertyName
+     */
     companion object {
         // Constants to represent the ship's movement direction
         const val stopped = 0

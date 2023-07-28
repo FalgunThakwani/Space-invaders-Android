@@ -85,6 +85,7 @@ class DockYard : AppCompatActivity() {
                 selectSpaceshipButton.text = "Best Score ${requiredScore} To Unlock"
                 selectSpaceshipButton.isEnabled = false
             } else {
+                // If the spaceship is already selected, disable the select button
                 if(selectedImageResId==spaceshipImages[index]){
                     selectSpaceshipButton.text = "Selected"
                     selectSpaceshipButton.isEnabled = false
@@ -114,6 +115,7 @@ class DockYard : AppCompatActivity() {
         editor.apply()
         val message = "Ship ${currentImageIndex + 1} selected"
         selectSpaceshipButton.text = "Selected"
+        selectSpaceshipButton.isEnabled = false
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
         // Navigate to HomeActivity after spaceship selection
