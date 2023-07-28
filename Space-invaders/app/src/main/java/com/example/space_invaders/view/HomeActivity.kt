@@ -45,8 +45,8 @@ class HomeActivity : AppCompatActivity() {
 
         // Navigate to DockYard when the "DOCKYARD" button is clicked
         dockyardButton.setOnClickListener {
-            val dockYardIntent = Intent(this, DockYard::class.java)
-            startActivity(dockYardIntent)
+            val dockyardActivityIntent = Intent(this, DockyardActivity::class.java)
+            startActivity(dockyardActivityIntent)
             finish()
         }
 

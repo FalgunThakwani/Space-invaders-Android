@@ -21,7 +21,7 @@
             android:name=".view.GameOverActivity"
             android:exported="true"/>
         <activity
-            android:name=".view.DockYard"
+            android:name=".view.DockyardActivity"
             android:exported="false"/>
         <activity
             android:name=".view.InvadersActivity"

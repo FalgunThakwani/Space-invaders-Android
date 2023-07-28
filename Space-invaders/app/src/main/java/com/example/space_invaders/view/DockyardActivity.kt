@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.space_invaders.R
 
 // Class for DockYard activity where players can choose their spaceship
-class DockYard : AppCompatActivity() {
+class DockyardActivity : AppCompatActivity() {
 
     // Define UI components
     private lateinit var spaceshipImageView: ImageView

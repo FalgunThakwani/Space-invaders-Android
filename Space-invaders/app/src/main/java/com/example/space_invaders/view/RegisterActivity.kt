@@ -10,6 +10,25 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.space_invaders.R
 
+/**
+ * Utility class for validation.
+ */
+object ValidationUtils {
+    /**
+     * Validates the player's name.
+     * @param name The player's name.
+     */
+    fun validatePlayerName(name: String): Boolean {
+        // 3-12 characters
+        // allowed special characters: - _ .
+        // first character must be a letter
+        // last character must be a letter or number
+        // no consecutive special characters
+        val regex = Regex("^[a-zA-Z][a-zA-Z0-9-_.]{1,10}[a-zA-Z0-9]$")
+        return regex.matches(name)
+    }
+}
+
 class RegisterActivity : AppCompatActivity() {
 
     /**
@@ -41,7 +60,7 @@ class RegisterActivity : AppCompatActivity() {
         // Set an on-click listener to the save button
         savePlayerNameButton.setOnClickListener {
             val playerName = playerNameEditText.text.toString()
-            if(validatePlayerName(playerName)){
+            if(ValidationUtils.validatePlayerName(playerName)){
                 savePlayerName(playerName)
                 // Navigate to HomeActivity
                 val intent = Intent(this, TutorialActivity::class.java)
@@ -67,19 +86,5 @@ class RegisterActivity : AppCompatActivity() {
 
         // Commit the changes
         editor.apply()
-    }
-
-    /**
-     * Validates the player's name.
-     * @param name The player's name.
-     */
-    private fun validatePlayerName(name: String): Boolean {
-        // 3-12 characters
-        // allowed special characters: - _ .
-        // first character must be a letter
-        // last character must be a letter or number
-        // no consecutive special characters
-        val regex = Regex("^[a-zA-Z][a-zA-Z0-9-_.]{1,10}[a-zA-Z0-9]$")
-        return regex.matches(name)
     }
 }
