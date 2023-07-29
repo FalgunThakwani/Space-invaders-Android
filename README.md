@@ -1,92 +1,80 @@
-# CSCI5708-Group5-Space-Invaders
+# CSCI 4176/5708 - Summer 2023 - Mobile Computing Group 5 Project
+
+* *Date Created*: 26 July 2023
+* *Last Modified*: 29 July 2023
+
+## Group 5 Members
+* Arpitkumar Patel – B00927071
+* Erxiao Tang - B00904660
+* Anirudh Hosur - B00899369
+* Falgun Jairaj Thakwani - B00932083
+
+## Group 5 GitLab URL
+* https://git.cs.dal.ca/hosur/csci5708-group5-space-invaders.git
+* Code has also been uploaded on Brightspace as a zip file
+
+## Group 5 Presentation
+- [Slides](https://pitch.com/public/1427ec3a-e302-4e7a-aa63-83dfe0122f47)
+- [Video](https://dalu-my.sharepoint.com/:v:/g/personal/ar260217_dal_ca/EcWxEWpPBE1FmoA1BBx9S5oBELBhOq_gjiD98RDG-ircYQ?e=aEljC1)
+
+## Getting Started
+
+### Requirements
+* Make sure you have Android Studio installed.
+* Install Java SDK 18 on your system.
+* Set up an Android Emulator Device, preferably using Pixel 3a with API 33.
+* Ensure that your app's minimum Android SDK version is 24.
+* Set the target Android SDK version to 33.
+
+### Running the app
+1) Unzip the file and extract the code.
+2) Launch Android Studio and import the project.
+3) Compile the app by building it.
+4) Begin the Android Virtual Device or connect your phone to the computer.
+5) Execute the app by running it on the virtual device or your connected phone.
+
+## Sources Used
+
+### 1) General help with Kotlin
+- “How to Draw a Line in Android with Kotlin,” GeeksforGeeks. https://www.geeksforgeeks.org/how-to-draw-a-line-in-android-with-kotlin/.
+- K. Fryer, “Using method -canvas.drawBitmap(bitmap, src, dst, paint),” Stack Overflow. https://stackoverflow.com/questions/9691985/using-method-canvas-drawbitmapbitmap-src-dst-paint
+- “Android Developers,” Android Developers, 2018. https://developer.android.com/
+- “YouTube,” YouTube, 2023. https://www.youtube.com/
+  <br /> <br />
+
+* “The activity lifecycle,” Android Developers. https://developer.android.com/guide/components/activities/activity-lifecycle
+* Utilizing Guidelines in ConstraintLayout: Learn how to divide layouts based on guidelines by referring to the official Android documentation for ConstraintLayout. - https://developer.android.com/reference/androidx/constraintlayout/widget/Guideline
+* EliteIntegrity, “GitHub - EliteIntegrity/Kotlin-Invaders: Simple Space Invaders clone using Kotlin for Android,” GitHu 2023. https://github.com/EliteIntegrity/Kotlin-Invaders.
+* “Game Code School,” YouTube. 2023. [YouTube Video]. Available: https://www.youtube.com/channel/UCY6pRQAXnwviO3dpmV258Ig/video
+* “Save simple data with SharedPreferences,” Android Developers. https://developer.android.com/training/data-storage/shared-preferences (accessed Jul. 29, 2023).
+* Zim, “Change color on fragment canvas when clicked from Activity,” Stack Overflow. https://stackoverflow.com/questions/50211117/change-color-on-fragment-canvas-when-clicked-from-activity.
 
 
+### 2) For generating some Layout XMLs:
+- OpenAI, “ChatGPT,” chat.openai.com, 2023. https://chat.openai.com/
 
-## Getting started
+### 3) Canvas in Kotlin
+* “Creating a simple Canvas object · GitBook,” Github.io. https://google-developer-training.github.io/android-developer-advanced-course-practicals/unit-5-advanced-graphics-and-views/lesson-11-canvas/11-1a-p-create-a-simple-canvas/11-1a-p-create-a-simple-canvas.html
+* Mayuri Khinvasara, “Exploring Android Canvas Drawing— For Shapes, Bitmaps andCustom views.,” Medium. https://medium.com/android-news/android-canvas-for-drawing-and-custom-views-e1a3e90d468b
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
+* Example:
+```kotlin
+public void drawRectangle(int x, int y) {
+    drawPaint.setColor(Color.RED);
+    Rect rectangle = new Rect((int) (x - ((0.8) * RADIUS)), (int) (y - ((0.6) * RADIUS)), (int) (x + ((0.8) * RADIUS)), (int) (y + ((0.6 * RADIUS))));
+    canvas.drawRect(rectangle, drawPaint);
+}
 ```
-cd existing_repo
-git remote add origin https://git.cs.dal.ca/hosur/csci5708-group5-space-invaders.git
-git branch -M main
-git push -uf origin main
-```
 
-## Integrate with your tools
+### 4) For Using Copyright Free Images (Open Source)
+- Unsplash, “Beautiful Free Images & Pictures | Unsplash.” https://unsplash.com/ (accessed Jul. 29, 2023).
+- “Exit Red Icons – Free Download SVG, PNG, GIF,” Icons8. https://icons8.com/icons/set/exit--static--red (accessed Jul. 29, 2023).
 
-- [ ] [Set up project integrations](https://git.cs.dal.ca/hosur/csci5708-group5-space-invaders/-/settings/integrations)
 
-## Collaborate with your team
+## Acknowledgments
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+* Google
+* StackOverflow
+* ChatGPT
+* The comprehensive Kotlin Documentation
+* Professor and dedicated Teaching Assistants for their valuable guidance and mentorship throughout the course.
