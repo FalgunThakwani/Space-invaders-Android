@@ -40,7 +40,6 @@
 - K. Fryer, “Using method -canvas.drawBitmap(bitmap, src, dst, paint),” Stack Overflow. https://stackoverflow.com/questions/9691985/using-method-canvas-drawbitmapbitmap-src-dst-paint
 - “Android Developers,” Android Developers, 2018. https://developer.android.com/
 - “YouTube,” YouTube, 2023. https://www.youtube.com/
-  <br /> <br />
 
 * “The activity lifecycle,” Android Developers. https://developer.android.com/guide/components/activities/activity-lifecycle
 * Utilizing Guidelines in ConstraintLayout: Learn how to divide layouts based on guidelines by referring to the official Android documentation for ConstraintLayout. - https://developer.android.com/reference/androidx/constraintlayout/widget/Guideline
